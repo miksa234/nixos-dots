@@ -17,12 +17,9 @@ ls-nixos-packages:
 ls-hm-packages:
     @home-manager packages | sort | uniq
 
-anywhere:
-    sudo nix --experimental-features "nix-command flakes" run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hardware-configuration.nix --flake ./#nixos-vm
-
 vm:
 	sudo nix --experimental-features "nix-command flakes" run nixpkgs#nixos-rebuild --  build-vm --flake .#nixos-vm
 
 clean:
-	rm -rf ./result
-	rm -rf *qcow2
+	rm -r ./result
+	rm *qcow2
