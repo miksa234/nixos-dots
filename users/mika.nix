@@ -26,7 +26,7 @@ in
       [
         ../modules/xdg.nix
         ../modules/nix_settings.nix
-        ../modules/services.nix
+        ../modules/mbsync_timer.nix
         ../modules/theme.nix
         ../modules/firefox.nix
       ]

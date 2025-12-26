@@ -76,6 +76,7 @@
 
   # services
   services = {
+    upower.enable = true;
     fwupd.enable = true;
     openssh.enable = true;
     power-profiles-daemon.enable = true;

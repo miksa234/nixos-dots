@@ -2,24 +2,22 @@
 {
   systemd.user = {
     services.mbsync = {
-      unit = {
+      Unit = {
         Description = "Mailbox sync service";
         RefuseManualStart = "no";
         RefuseManualStop = "yes";
       };
-      service = {
+      Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.zsh}/bin/zsh -c '${pkgs.isync}/bin/mbsync -c %h/.config/isync/mbsyncrc -a -q'";
-        StandardOutput = "syslog";
-        StandardError = "syslog";
+        ExecStart = "${pkgs.isync}/bin/mbsync -c %h/.config/isync/mbsyncrc -a -q";
       };
-      install = {
-        wantedBy = [ "mbsync.timer" ];
+      Install = {
+        wantedBy = [ "default.target" ];
       };
     };
     timers.mbsync = {
       Unit = {
-        Description = "Mailbox synchronization timer";
+        Description = "Mailbox sync timer";
         RefuseManualStop = "no";
         RefuseManualStart = "no";
       };
@@ -30,7 +28,7 @@
         Unit = "mbsync.service";
       };
       Install = {
-        WantedBy = [ "default.target" ];
+        WantedBy = [ "timers.target" ];
       };
     };
   };
