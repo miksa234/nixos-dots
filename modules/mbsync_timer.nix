@@ -1,14 +1,5 @@
 { lib, pkgs , ... }:
 {
-    systemd.user.timers.mbsync = {
-      Install.WantedBy = lib.mkForce [ ]; # Decouples it from the startup target
-      timerConfig.Enabled = false;        # Explicitly tells systemd not to load it
-    };
-
-    systemd.user.services.mbsync = {
-      Install.WantedBy = lib.mkForce [ ];
-      Service.ExecStart = lib.mkForce "${pkgs.coreutils}/bin/true"; # Prevent actual execution
-    };
 #  systemd.user = {
 #    startServices = "sd-switch";
 #    services.mbsync = {
