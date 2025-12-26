@@ -1,3 +1,4 @@
+{pkgs, ...}:
 {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -10,4 +11,10 @@
     XDG_PUBLICSHARE_DIR = "$HOME/cloud";
   };
   xdg.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
 }

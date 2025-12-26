@@ -3,9 +3,14 @@
 }: let
     inherit ( import ../lib/dotfiles.nix ) dotfiles;
 in {
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+
 
     users.root = { pkgs, config, ... }: {
       home.username = "root";
@@ -29,6 +34,8 @@ in {
         ".config/shell/profile" = mkDotfileLink ".config/shell/profile";
         ".config/shell/aliases" = mkDotfileLink ".config/shell/aliases";
         ".config/git" = mkDotfileLink ".config/git";
+
+        ".local/bin/.keep".text = "";
 
         # nvim no plugins
         ".config/nvim/init.lua" = mkDotfileLink ".config/nvim/init.lua";

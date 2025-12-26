@@ -1,13 +1,13 @@
 {
   pkgs,
-  vm,
+  hostName,
   ...
 } :
 {
   imports =
     [
-      ../../modules/nix_settings.nix
       ../../users/root.nix
+      ../../modules/nix_settings.nix
     ];
 
   system.stateVersion = "25.11";
@@ -50,7 +50,7 @@
 
   # netowrk
   networking = {
-    hostName = "nixos-frame";
+    hostName = "${hostName}";
     networkmanager.enable = true;
   };
 

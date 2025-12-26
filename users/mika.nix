@@ -24,12 +24,16 @@ in
   imports = if standalone
     then
       [
-      ../modules/xdg.nix
-      ../modules/nix_settings.nix
-      ../modules/theme.nix
-      ../modules/firefox.nix
+        ../modules/xdg.nix
+        ../modules/nix_settings.nix
+        ../modules/theme.nix
+        ../modules/firefox.nix
       ]
-    else [ ../modules/firefox.nix ];
+    else
+      [
+        ../modules/firefox.nix
+        ../modules/theme.nix
+      ];
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with packageSets; lib.flatten [

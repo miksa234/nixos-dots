@@ -28,11 +28,13 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     nixosConfigurations = {
-      nixos-frame = nixpkgs.lib.nixosSystem {
+      nixos-frame = let
+        hostName = "nixos-frame";
+      in nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
-          vm = false ;
+          inherit hostName;
         };
         modules = [
           disko.nixosModules.disko
@@ -41,13 +43,27 @@
           ./system/host/host-frame.nix
           ./system/disk/disk-vm.nix
           ./system/hardware/hardware-vm.nix
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit system;
+                inherit inputs;
+                standalone = false;
+              };
+              users.mika = import ./users/mika.nix;
+            };
+          }
         ];
       };
-      nixos-vm = nixpkgs.lib.nixosSystem {
+      nixos-vm = let
+        hostName = "nixos-vm";
+      in nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
-          vm = true;
+          inherit hostName;
         };
         modules = [
           home-manager.nixosModules.home-manager
