@@ -83,6 +83,32 @@
           }
         ];
       };
+      nixos-server = let
+        hostName = "nixos-server";
+      in nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit hostName;
+        };
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./system/host/host-server.nix
+          ./system/hardware/hardware-vm.nix
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit system;
+                inherit inputs;
+                standalone = false;
+              };
+              users.r2d2 = import ./users/r2d2.nix;
+            };
+          }
+        ];
+      };
     };
     homeConfigurations = {
       mika = home-manager.lib.homeManagerConfiguration {

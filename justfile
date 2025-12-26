@@ -17,8 +17,8 @@ ls-nixos-packages:
 ls-hm-packages:
     @home-manager packages | sort | uniq
 
-vm:
-	sudo nix --experimental-features "nix-command flakes" run nixpkgs#nixos-rebuild --  build-vm --flake .#nixos-vm --impure
+vm machine:
+	sudo nix --experimental-features "nix-command flakes" run nixpkgs#nixos-rebuild --  build-vm --flake .#{{machine}} --impure
 
 anywhere machine target:
     sudo nix --experimental-features "nix-command flakes" run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hardware-configuration.nix --flake ./#{{machine}} --target-host {{target}}
