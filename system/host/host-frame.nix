@@ -115,7 +115,7 @@
 
   # programs
   programs = {
-    zsh.enable = false;
+    zsh.enable = true;
     dconf.enable = true;
     gnupg.agent = {
       enable = true;
