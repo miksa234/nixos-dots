@@ -28,6 +28,9 @@
         "-display gtk,zoom-to-fit=false"
         "-vga virtio"
       ];
+      forwardPorts = [
+        { from = "host"; host.port = 2222; guest.port = 61745; }
+      ];
     };
   };
 
@@ -62,6 +65,9 @@
       initialPassword = "123";
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
+      openssh.authorizedKeys.keys = [
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjUjMsWMlPY0YNtSPMdmCIBnNHzT8PdN7Gc0a+RuQg2slRe7Gh1HgRPAX0pg3CIh0oNTDfuOGrOTcl/SdX+WdhChZJkcoKiDKPB98TCioJnYF9k1vouhx0P3soN/Bd4gQEd2Vx0+XTQzmK9VhFtBoNQt9Eh90ZGCrBtsfPB9odDuymotI9FPXSboUPAe3WttzzUeTpY3JurInHW2rCQsYIvti0ZGwdm6EwVjN+6aZ300uT6olrAc+6csyOZrdQQXm1G35x6MLKpYoyFoGQYkS/4vvHMbzj9F9zp8Y+aUZ0+iQvK2owhS7auzELuO2/nqwODCHXLxn8Sg15r0XJn4tVvgAxqvtG+i0SIeqjfrzsu+fg1n2tJGCAq96nyOCruYHcmLOQ0Z9d+hf04Y1thS4GCtNmqT/RGdboDI1xEmg3PaUUPgaL7pCiG+6OtTC/4F0/f/m6neRn219UAPshI7LZKT1aRsBCqKRnEmbUSKWa0ilDntCDsST2VcHwKk0Tjnb+UIvjoHJ2qQQao7i1dmzZ8oUu/9wpyt5aaNxxvcm6qfjht1TGw/1RBHyhOsPNrlHpzUtzbvDdVwHfO0/6eksb73kJ7WMqU+FutbF5ekogcUzkYMo6G7O6hDMFb+w405ontM5syg6OcYWTq2+kllbKiGETxQpizzuWKERCExpHWQ== mika@frame"
+      ];
     };
     root = {
       shell = pkgs.zsh;
@@ -76,13 +82,11 @@
     automatic-timezoned.enable = true;
     openssh = {
       enable = true;
+      ports = [ 61745 ];
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
       };
-      knownHosts.r2d2.publicKey = ''
-      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCjUjMsWMlPY0YNtSPMdmCIBnNHzT8PdN7Gc0a+RuQg2slRe7Gh1HgRPAX0pg3CIh0oNTDfuOGrOTcl/SdX+WdhChZJkcoKiDKPB98TCioJnYF9k1vouhx0P3soN/Bd4gQEd2Vx0+XTQzmK9VhFtBoNQt9Eh90ZGCrBtsfPB9odDuymotI9FPXSboUPAe3WttzzUeTpY3JurInHW2rCQsYIvti0ZGwdm6EwVjN+6aZ300uT6olrAc+6csyOZrdQQXm1G35x6MLKpYoyFoGQYkS/4vvHMbzj9F9zp8Y+aUZ0+iQvK2owhS7auzELuO2/nqwODCHXLxn8Sg15r0XJn4tVvgAxqvtG+i0SIeqjfrzsu+fg1n2tJGCAq96nyOCruYHcmLOQ0Z9d+hf04Y1thS4GCtNmqT/RGdboDI1xEmg3PaUUPgaL7pCiG+6OtTC/4F0/f/m6neRn219UAPshI7LZKT1aRsBCqKRnEmbUSKWa0ilDntCDsST2VcHwKk0Tjnb+UIvjoHJ2qQQao7i1dmzZ8oUu/9wpyt5aaNxxvcm6qfjht1TGw/1RBHyhOsPNrlHpzUtzbvDdVwHfO0/6eksb73kJ7WMqU+FutbF5ekogcUzkYMo6G7O6hDMFb+w405ontM5syg6OcYWTq2+kllbKiGETxQpizzuWKERCExpHWQ== mika@frame
-      '';
     };
   };
 

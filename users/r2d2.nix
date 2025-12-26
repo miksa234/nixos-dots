@@ -20,32 +20,32 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-  home.packages = with packageSets; lib.flatten [
+  home.packages = (with packageSets; lib.flatten [
     system
     shell
     cli
-    lf
     network
     development
-  ];
+  ]) ++ [ pkgs.lf ];
 
-  home.file = {
-    ".zshenv".source = link "${dotfiles}/.zshenv";
-    ".local" = {
-      source = link "${dotfiles}/.local";
+
+  home.file = let
+    mkDotfileLink = path: {
+      source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
       recursive = true;
     };
+  in {
+    ".zshenv" = mkDotfileLink ".zshenv";
+    ".config/zsh/.zshrc" = mkDotfileLink ".config/zsh/.zshrc";
+    ".config/shell" = mkDotfileLink ".config/shell";
+    ".config/git" = mkDotfileLink ".config/git";
+    ".config/nvim" = mkDotfileLink ".config/nvim";
     ".config/nix-zsh-plugins.zsh".text = ''
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
     '';
+    ".local" = mkDotfileLink ".local";
   };
-
-  xdg.configFile = lib.genAttrs configDirs (dir: {
-    source = link "${dotfiles}/.config/${dir}";
-    recursive = true;
-  });
-
 }
 
 
