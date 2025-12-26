@@ -37,12 +37,10 @@
           inherit hostName;
         };
         modules = [
-          disko.nixosModules.disko
           nixos-hardware.nixosModules.framework-13-7040-amd
           home-manager.nixosModules.home-manager
           ./system/host/host-frame.nix
-          ./system/disk/disk-vm.nix
-          ./system/hardware/hardware-vm.nix
+          ./system/hardware/hardware-frame.nix
           {
             home-manager = {
               useGlobalPkgs = true;
