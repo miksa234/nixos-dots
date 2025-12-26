@@ -26,13 +26,15 @@ in
       [
         ../modules/xdg.nix
         ../modules/nix_settings.nix
+        ../modules/services.nix
         ../modules/theme.nix
         ../modules/firefox.nix
       ]
     else
       [
-        ../modules/firefox.nix
+        ../modules/services.nix
         ../modules/theme.nix
+        ../modules/firefox.nix
       ];
 
   nixpkgs.config.allowUnfree = true;
