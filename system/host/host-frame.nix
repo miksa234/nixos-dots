@@ -140,7 +140,7 @@
     pstree
 
     upower
-    xsensors
+    lm_sensors
     acpilight
   ];
 
