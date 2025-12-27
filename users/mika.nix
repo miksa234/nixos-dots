@@ -58,7 +58,6 @@ in
       recursive = true;
     };
     ".config/nix-zsh-plugins.zsh".text = ''
-      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
     '';
   };

@@ -38,7 +38,6 @@ with pkgs; {
 
   shell = [
     zsh
-    zsh-fast-syntax-highlighting
     zsh-system-clipboard
     tmux
     neovim

@@ -58,18 +58,30 @@
   time.timeZone = "Europe/Lisbon";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # users
-  users.users = {
-    mika = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" ];
-      initialPassword = "123";
-      shell = pkgs.zsh;
-      ignoreShellProgramCheck = true;
+  # programs
+  programs = {
+    zsh = {
+      enable = true;
     };
-    root = {
-      shell = pkgs.zsh;
-      ignoreShellProgramCheck = true;
+    dconf.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
+  # users
+  users = {
+    users = {
+      mika = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+        initialPassword = "123";
+        shell = pkgs.zsh;
+      };
+      root = {
+        shell = pkgs.zsh;
+      };
     };
   };
   security.sudo.wheelNeedsPassword = false;
@@ -113,22 +125,11 @@
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
 
-  # programs
-  programs = {
-    zsh.enable = true;
-    dconf.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-  };
-
   # packages
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     neovim
     wget
-    zsh
     git
     curl
     tree
