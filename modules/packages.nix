@@ -124,7 +124,7 @@ with pkgs; {
   ];
 
   office = [
-    texliveFull
+#    texliveFull
     groff
     libreoffice-fresh
   ];
