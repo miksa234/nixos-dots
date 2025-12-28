@@ -1,7 +1,6 @@
 { pkgs , ... }:
 {
   systemd.user = {
-    startServices = "sd-switch";
     services.mbsync = {
       Unit = {
         Description = "Mailbox sync service";
@@ -10,10 +9,10 @@
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.isync}/bin/mbsync -c %h/.config/isync/mbsyncrc -a -q";
+        ExecStart = "${pkgs.zsh}/bin/zsh -c '${pkgs.isync}/bin/mbsync -c %h/.config/isync/mbsyncrc -a -q'";
       };
       Install = {
-        wantedBy = [ "default.target" ];
+        WantedBy = [ "default.target" ];
       };
     };
     timers.mbsync = {

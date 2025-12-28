@@ -11,7 +11,9 @@ let
 
   link = config.lib.file.mkOutOfStoreSymlink;
   inherit (import ../lib/dotfiles.nix) dotfiles;
-  configDirs = builtins.attrNames (builtins.readDir "${dotfiles}/.config");
+  configDirs = builtins.filter
+    (name: name != "systemd")
+    (builtins.attrNames (builtins.readDir "${dotfiles}/.config"));
 in
 {
   home = {
@@ -19,6 +21,7 @@ in
     homeDirectory = "/home/mika";
     stateVersion = "25.11";
   };
+
 
 
   imports = if standalone
@@ -36,6 +39,11 @@ in
         ../modules/theme.nix
         ../modules/firefox.nix
       ];
+
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.xdg.dataHome}";
+  };
 
   nixpkgs.config.allowUnfree = true;
   home.packages = with packageSets; lib.flatten [

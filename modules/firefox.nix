@@ -23,8 +23,9 @@
       frame = {
         id = 0;
         name = "frame";
-        isDefault = false;
+        isDefault = true;
         settings = {
+          "layout.css.devPixelsPerPx" = 1.3;
           "browser.toolbars.bookmarks.visibility" = "always";
           "browser.download.start_downloads_in_tmp_dir" = false;
           "browser.download.lastDir" = "/home/mika";
@@ -33,7 +34,7 @@
       mulmon = {
         id = 1;
         name = "mulmon";
-        isDefault = true;
+        isDefault = false;
         settings = {
           "layout.css.devPixelsPerPx" = 0.9;
           "browser.toolbars.bookmarks.visibility" = "always";
