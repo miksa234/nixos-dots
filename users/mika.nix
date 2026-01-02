@@ -20,7 +20,6 @@ in
     stateVersion = "25.11";
   };
 
-
   imports = if standalone
     then
       [

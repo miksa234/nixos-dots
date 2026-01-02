@@ -62,10 +62,6 @@
 
   # programs
   programs = {
-    zsh = {
-      enable = true;
-      enableCompletion = false;
-    };
     dconf.enable = true;
     gnupg.agent = {
       enable = true;
@@ -81,9 +77,11 @@
         extraGroups = [ "wheel" ];
         initialPassword = "123";
         shell = pkgs.zsh;
+        ignoreShellProgramCheck = true;
       };
       root = {
         shell = pkgs.zsh;
+        ignoreShellProgramCheck = true;
       };
     };
   };
@@ -134,6 +132,7 @@
     neovim
     wget
     git
+    nix
     curl
     tree
     coreutils
