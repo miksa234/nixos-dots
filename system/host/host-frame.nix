@@ -51,14 +51,11 @@
       "iommu=pt"
       "rtc_cmos.use_acpi_alarm=1"
     ];
-    initrd.services.udev.rules = ''
-      SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="9A:C7:16:D6:89:36", NAME="wlan0"
-    '';
   };
 
   # netowrk
   networking.hostName = "${hostName}";
-  networking.wireless.iwd.enable = true;
+  networking.wireless.enable = true;
 
   # time/locale
   time.timeZone = "Europe/Lisbon";
@@ -126,9 +123,15 @@
     };
 
   };
+
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=20m
   '';
+
+  systemd.network.links."10-wlan0" = {
+    matchConfig.MACAddress = "14:AC:60:29:82:AB";
+    linkConfig.Name = "wlan0";
+  };
 
   # hardware
   hardware.bluetooth.enable = true;
@@ -160,6 +163,8 @@
   # fonts
   fonts.packages = with pkgs; [
     terminus_font
+    noto-fonts
+    noto-fonts-color-emoji
   ];
 }
 

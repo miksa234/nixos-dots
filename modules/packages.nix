@@ -167,7 +167,7 @@ with pkgs; {
     ruby
     gem
     php
-    julia
+    julia-bin
     python3
     python313Packages.pip
     rustup

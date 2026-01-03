@@ -4,6 +4,9 @@ user := `whoami`
 os:
     sudo nixos-rebuild switch --flake ./#{{hostname}} --impure
 
+os_rollback:
+    sudo nixos-rebuild switch --flake --rollback
+
 hm:
     home-manager switch -b backup --flake ./#{{user}}
 

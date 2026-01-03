@@ -19,7 +19,7 @@ in
     stateVersion = "25.11";
   };
 
-  nixpkgs.config.allowUnfree = true;
+
   home.packages = (with packageSets; lib.flatten [
     system
     shell

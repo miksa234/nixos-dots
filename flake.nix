@@ -2,8 +2,8 @@
   description = "NixOS";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
-    nixpkgs_unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs_stable.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     betterfox.url =  "github:HeitorAugustoLN/betterfox-nix";
@@ -12,7 +12,7 @@
         inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
@@ -22,6 +22,7 @@
   };
   outputs = {
     self,
+    nixpkgs_stable,
     nixpkgs,
     disko,
     home-manager,
@@ -90,7 +91,7 @@
       };
       nixos-server = let
         hostName = "nixos-server";
-      in nixpkgs.lib.nixosSystem {
+      in nixpkgs_stable.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
