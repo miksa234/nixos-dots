@@ -7,6 +7,7 @@
   ...
 }:
 let
+
   packageSets = import ../modules/packages.nix { inherit pkgs; };
 
   link = config.lib.file.mkOutOfStoreSymlink;
@@ -36,7 +37,12 @@ in
         ../modules/firefox.nix
       ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = if standalone
+  then {
+    config.allowUnfree = true;
+  } else
+    {};
+
   home.packages = with packageSets; lib.flatten [
     system
     shell

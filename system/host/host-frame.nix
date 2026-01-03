@@ -51,6 +51,9 @@
       "iommu=pt"
       "rtc_cmos.use_acpi_alarm=1"
     ];
+    initrd.services.udev.rules = ''
+      SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="9A:C7:16:D6:89:36", NAME="wlan0"
+    '';
   };
 
   # netowrk
