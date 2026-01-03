@@ -3,20 +3,20 @@
   sops = {
     secrets = {
       "networking/gajba" = {};
-      "networking/wg0-ponnect_prv" = {};
-      "networking/wg0-ponnect_pre" = {};
-      "networking/wg0-router_prv" = {};
-      "networking/wg0-server_prv" = {};
-      "networking/wg0-server_pre" = {};
+      "networking/wg0_ponnect_prv" = {};
+      "networking/wg0_ponnect_pre" = {};
+      "networking/wg0_router_prv" = {};
+      "networking/wg0_server_prv" = {};
+      "networking/wg0_server_pre" = {};
     };
     templates.wifi = {
       content = ''
         Gajba=${config.sops.placeholder."networking/gajba"}
-        wg0-ponnect_prv=${config.sops.placeholder."networking/wg0-ponnect_prv"}
-        wg0-ponnect_pre=${config.sops.placeholder."networking/wg0-ponnect_pre"}
-        wg0-router_prv=${config.sops.placeholder."networking/wg0-router_prv"}
-        wg0-server_prv=${config.sops.placeholder."networking/wg0-server_prv"}
-        wg0-server_pre=${config.sops.placeholder."networking/wg0-server_pre"}
+        wg0_ponnect_prv=${config.sops.placeholder."networking/wg0_ponnect_prv"}
+        wg0_ponnect_pre=${config.sops.placeholder."networking/wg0_ponnect_pre"}
+        wg0_router_prv=${config.sops.placeholder."networking/wg0_router_prv"}
+        wg0_server_prv=${config.sops.placeholder."networking/wg0_server_prv"}
+        wg0_server_pre=${config.sops.placeholder."networking/wg0_server_pre"}
       '';
     };
   };
@@ -123,13 +123,13 @@
           };
           proxy = { };
           wireguard = {
-            private-key = "$wg0-ponnect_prv";
+            private-key = "$wg0_ponnect_prv";
           };
           "wireguard-peer.vadaAF6n58daN9sqQ7o2yUjy8CmKXbXSWzIrzVqHUCs=" = {
             allowed-ips = "0.0.0.0/0;::/0;";
             endpoint = "ponnect.rs:1194";
             persistent-keepalive = "25";
-            preshared-key = "$wg0-ponnect_pre";
+            preshared-key = "$wg0_ponnect_pre";
             preshared-key-flags = "0";
           };
         };
@@ -154,7 +154,7 @@
           };
           proxy = { };
           wireguard = {
-            private-key = "$wg0-router_prv";
+            private-key = "$wg0_router_prv";
           };
           "wireguard-peer.M1KoNQqQ3zK4hYnblqwJw34x8R46jAJaJlXJKOKxg2g=" = {
             allowed-ips = "0.0.0.0/0;::/0;";
@@ -183,12 +183,12 @@
           };
           proxy = { };
           wireguard = {
-            private-key = "$wg0-server_prv";
+            private-key = "$wg0_server_prv";
           };
           "wireguard-peer.HLNNBQypzLWhWE4UFB2zd7bk9pmAC4iWM8qpDeDGwDw=" = {
             allowed-ips = "0.0.0.0/0;::/0;";
             endpoint = "213.136.71.18:1194";
-            preshared-key = "$wg0-server_pre";
+            preshared-key = "$wg0_server_pre";
             preshared-key-flags = "0";
           };
 

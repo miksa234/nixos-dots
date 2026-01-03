@@ -35,6 +35,7 @@ with pkgs; {
     nix
     just
     htop
+    sops
   ];
 
   shell = [
