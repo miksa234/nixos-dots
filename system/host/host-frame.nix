@@ -62,11 +62,17 @@
 
   # programs
   programs = {
+    zsh.enable = true;
     dconf.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+  };
+
+  environment.variables = {
+    __ETC_ZSHRC_SOURCED = "1";
+    __ETC_ZSHENV_SOURCED = "1";
   };
 
   # users
@@ -77,11 +83,9 @@
         extraGroups = [ "wheel" ];
         initialPassword = "123";
         shell = pkgs.zsh;
-        ignoreShellProgramCheck = true;
       };
       root = {
         shell = pkgs.zsh;
-        ignoreShellProgramCheck = true;
       };
     };
   };
@@ -146,6 +150,7 @@
     lm_sensors
     acpilight
   ];
+
 
   # fonts
   fonts.packages = with pkgs; [
