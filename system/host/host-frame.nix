@@ -58,6 +58,7 @@
 
   # netowrk
   networking.hostName = "${hostName}";
+  networking.wireless.iwd.enable = true;
 
   # time/locale
   time.timeZone = "Europe/Lisbon";
@@ -148,6 +149,7 @@
     pciutils
     util-linux
     pstree
+    wireguard-tools
 
     upower
     lm_sensors

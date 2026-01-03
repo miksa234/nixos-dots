@@ -48,6 +48,7 @@
     ensureProfiles = {
       environmentFiles = [ config.sops.templates.wifi.path ];
       profiles = {
+
         Gajba = {
           connection = {
             id = "Gajba";
@@ -73,6 +74,7 @@
             psk = "$Gajba";
           };
         };
+
         Gajba_5G = {
           connection = {
             id = "Gajba_5G";
@@ -99,6 +101,7 @@
             psk = "$Gajba";
           };
         };
+
         wg0-ponnect = {
           connection = {
             autoconnect = "false";
@@ -130,6 +133,7 @@
             preshared-key-flags = "0";
           };
         };
+
         wg0-router = {
           connection = {
             autoconnect = "false";
@@ -158,6 +162,7 @@
             persistent-keepalive = "25";
           };
         };
+
         wg0-server = {
           connection = {
             autoconnect = "false";
@@ -186,6 +191,7 @@
             preshared-key = "$wg0-server_pre";
             preshared-key-flags = "0";
           };
+
         };
       };
     };
