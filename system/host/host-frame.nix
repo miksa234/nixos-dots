@@ -159,7 +159,6 @@
     acpilight
   ];
 
-
   # fonts
   fonts.packages = with pkgs; [
     nerd-fonts.terminess-ttf

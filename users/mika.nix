@@ -68,10 +68,13 @@ in
     '';
   };
 
-  xdg.configFile = lib.genAttrs configDirs (dir: {
-    source = link "${dotfiles}/.config/${dir}";
-    recursive = true;
-  });
+  xdg.configFile = let
+    filteredDirs = builtins.filter (dir: dir != "systemd") configDirs;
+  in
+    lib.genAttrs filteredDirs (dir: {
+      source = link "${dotfiles}/.config/${dir}";
+      recursive = true;
+    });
 
 }
 
