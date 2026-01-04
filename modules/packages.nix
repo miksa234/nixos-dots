@@ -7,25 +7,25 @@ let
 
   suckless = with pkgs; {
     dwm = dwm.overrideAttrs (old: {
-      src = fetchSucklessRepo "dwm" "sha256-wG5rs6XnRqsTCmEjPOO4hnrbvnDFVFmZexCwmUu/2ZQ=";
+      src = fetchSucklessRepo "dwm" "sha256-Yp70Juv/5V23PY+55Qa1JCudtoygFHrcTuhFHQgWGWo=";
       buildInputs = old.buildInputs ++ [ xorg.libxcb ];
     });
 
     st = st.overrideAttrs (old: {
-      src = fetchSucklessRepo "st" "sha256-7vQRrfH8QFIgbD8Grcw2hXBezCboraYUXdMv8CbkK00=";
+      src = fetchSucklessRepo "st" "sha256-RYWB2LmEAafQUXhhtKi+7iJ6Ey5qLyTjjfLwOvNhu6U=";
     });
 
     dmenu = dmenu.overrideAttrs (old: {
-      src = fetchSucklessRepo "dmenu" "sha256-6/XItNSFcgnd4QH87l04TKNm22wcgLLleJEqwB12dJ4=";
+      src = fetchSucklessRepo "dmenu" "sha256-YPtt7+wMickAYs271+lgKaUlWjxPwnsOJmaN/BS3ZzU=";
     });
 
     slock = slock.overrideAttrs (old: {
-      src = fetchSucklessRepo "slock" "sha256-lXGz75XeDzkyGw5AfhK8enM/oq1ZvXWtSd7gJJjYBA8=";
+      src = fetchSucklessRepo "slock" "sha256-3FWgl5IfiiCCXmM5b2eIEV6lAX4ioLjCdOp5vKrsjZg=";
       buildInputs = old.buildInputs ++ (with xorg; [ libXinerama imlib2 libxft ]);
     });
 
     dwmblocks = dwmblocks.overrideAttrs (old: {
-      src = fetchSucklessRepo "dwmblocks" "sha256-knhSzTcRadCC1ZFJBE/lnyuDO6L2iW3QSk3sIude4Ik=";
+      src = fetchSucklessRepo "dwmblocks" "sha256-08Afj+djz37J16Uz9jnl2iBwd/h4N11UU9nBvfkzVsU=";
     });
   };
 in
