@@ -20,7 +20,7 @@ let
     });
 
     slock = slock.overrideAttrs (old: {
-      src = fetchSucklessRepo "slock" "sha256-i13Aq3xQTML+UVWBTzIL2/sFbRn00GocMgH1sHKeN+Q=";
+      src = fetchSucklessRepo "slock" "sha256-lXGz75XeDzkyGw5AfhK8enM/oq1ZvXWtSd7gJJjYBA8=";
       buildInputs = old.buildInputs ++ (with xorg; [ libXinerama imlib2 libxft ]);
     });
 
@@ -36,6 +36,7 @@ with pkgs; {
     just
     htop
     sops
+    direnv
   ];
 
   shell = [

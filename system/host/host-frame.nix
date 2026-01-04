@@ -162,9 +162,8 @@
 
   # fonts
   fonts.packages = with pkgs; [
+    nerd-fonts.terminess-ttf
     terminus_font
-    noto-fonts
-    noto-fonts-color-emoji
   ];
 }
 
