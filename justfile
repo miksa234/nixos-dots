@@ -4,7 +4,7 @@ user := `whoami`
 os:
     sudo nixos-rebuild switch --flake ./#{{hostname}} --impure
 
-os_rollback:
+rollback:
     sudo nixos-rebuild switch --flake --rollback
 
 hm:
