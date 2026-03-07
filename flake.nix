@@ -1,9 +1,10 @@
 {
   description = "NixOS";
-
   inputs = {
     nixpkgs_stable.url = "nixpkgs/nixos-25.11";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixkgs";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     betterfox.url =  "github:HeitorAugustoLN/betterfox-nix";
@@ -24,6 +25,7 @@
     self,
     nixpkgs_stable,
     nixpkgs,
+    nix-darwin,
     disko,
     home-manager,
     nixos-hardware,
@@ -114,6 +116,36 @@
             };
           }
         ];
+      };
+    };
+    darwinConfigurations = {
+      "mac" = let
+          hostName = "mac";
+          system = "nixos-darwin";
+        in nix-darwin.lib.darwinSys {
+         specialArgs = {
+           inherit system;
+           inherit hostName;
+         };
+         modules = [
+           home-manager.nixosModules.home-manager
+           sops-nix.nixosModules.sops
+           ./system/host/mac.nix
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit system;
+                  inherit inputs;
+                  standalone = false;
+                };
+                users.mika = import ./users/mika.nix;
+              };
+            }
+
+        ]
+
       };
     };
     homeConfigurations = {
