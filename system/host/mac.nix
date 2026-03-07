@@ -46,6 +46,7 @@
 
   system.primaryUser = "mika";
 
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -55,12 +56,10 @@
     tree
     coreutils
     stdenv
-    dbus-broker
     pciutils
     util-linux
     pstree
     wireguard-tools
-    kitty
   ];
 
 

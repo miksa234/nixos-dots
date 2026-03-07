@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, isDarwin }:
 let
   fetchSucklessRepo = repo: hash: pkgs.fetchgit {
     url = "git://popovic.xyz/${repo}.git";
@@ -68,6 +68,7 @@ with pkgs; {
     whois
     nmap
     wireguard-tools
+  ] ++ lib.optionals (!isDarwin) [
     nextcloud-client
     tigervnc
   ];
@@ -86,23 +87,25 @@ with pkgs; {
     power-profiles-daemon
     pavucontrol
     pamixer
+  ] ++ (with suckless; [ dwm st dmenu slock dwmblocks ]);
 
-    #fonts
+  fonts = [
     noto-fonts-color-emoji
     font-awesome
     noto-fonts
-  ] ++ (with suckless; [ dwm st dmenu slock dwmblocks ]);
+  ];
 
   media = [
     mpv
-    vlc
     spotify
-    gimp
-    sxiv
     inkscape
     imagemagick
     mediainfo
     transmission_4
+  ] ++ lib.optionals (!isDarwin) [
+    vlc
+    sxiv
+    gimp
   ];
 
   communication = [
@@ -111,11 +114,9 @@ with pkgs; {
   ];
 
   fileManagement = [
-    nautilus
     lf
     file
     poppler-utils
-    gnome-epub-thumbnailer
     atool
     odt2txt
     djvulibre
@@ -125,12 +126,17 @@ with pkgs; {
     zathuraPkgs.zathura_cb
     zathuraPkgs.zathura_djvu
     zathuraPkgs.zathura_pdf_mupdf
+  ] ++ lib.optionals (!isDarwin) [
+    nautilus
+    gnome-epub-thumbnailer
   ];
 
   office = [
     groff
+  ] ++ lib.optionals (!isDarwin) [
     libreoffice-fresh
   ];
+
 
   email = [
     neomutt
@@ -166,7 +172,6 @@ with pkgs; {
     lua5_1
     go
     ruby
-    gem
     php
     julia-bin
     python3

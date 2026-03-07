@@ -8,28 +8,37 @@
 }:
 let
 
-  packageSets = import ../modules/packages.nix { inherit pkgs; };
+  packageSets = import ../modules/packages.nix { inherit pkgs isDarwin; };
 
   link = config.lib.file.mkOutOfStoreSymlink;
   inherit (import ../lib/dotfiles.nix) dotfiles;
   configDirs = builtins.attrNames (builtins.readDir "${dotfiles}/.config");
 in
 {
+  nixpkgs = if standalone
+  then {
+    config.allowUnfree = true;
+  } else
+    {};
+
   home = {
     username = "mika";
     stateVersion = if isDarwin then "25.05" else "25.11";
-    packages = with packageSets; lib.flatten [
-      system
-      shell
-      cli
-      xorg
-      media
-      fileManagement
-      network
-      office
-      email
-      development
-    ];
+    packages = lib.flatten (
+      with packageSets; [
+        system
+        shell
+        cli
+        media
+        fileManagement
+        network
+        office
+        fonts
+        email
+        development
+      ]  ++ lib.optionals (!isDarwin) [ xorg ]
+    );
+
     file = {
       ".zshenv".source = link "${dotfiles}/.zshenv";
       ".local" = {
@@ -52,6 +61,7 @@ in
       size = 18;
     };
     settings = {
+      background_opacity = 0.93;
       confirm_os_window_close = 0;
     };
   };
@@ -66,14 +76,6 @@ in
       ../modules/nix_settings.nix
     ]
     ++ lib.optional (!isDarwin) [ ../modules/theme.nix ];
-
-  nixpkgs = if standalone
-  then {
-    config.allowUnfree = true;
-  } else
-    {};
-
-
 
   xdg.configFile = let
     filteredDirs = builtins.filter (dir: dir != "systemd") configDirs;
