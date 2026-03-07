@@ -1,25 +1,27 @@
 {
+  pkgs,
+  lib,
+  isDarwin ? false,
   ...
 }: let
     inherit ( import ../lib/dotfiles.nix ) dotfiles;
 in {
-  environment.pathsToLink = [
+  environment.pathsToLink = if (!isDarwin)
+    then [
     "/share/applications"
-    "/share/xdg-desktop-portal"
-  ];
+    /share/xdg-desktop-portal
+  ] else [];
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
 
-
     users.root = { pkgs, config, ... }: {
       home.username = "root";
-      home.homeDirectory = "/root";
-      home.stateVersion = "25.11";
+      home.homeDirectory = if isDarwin then  "/var/root" else "/root";
+      home.stateVersion = if isDarwin then "25.05" else "25.11";
 
-      imports = [
-        ../modules/xdg.nix
-      ];
+      imports = [ ] ++ lib.optionals (!isDarwin) [ ../modules/xdg.nix ];
 
       home.file = let
         mkDotfileLink = path: {

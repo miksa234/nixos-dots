@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   hostName,
   systemName,
@@ -62,17 +63,14 @@
   homebrew = {
     enable = true;
     brewPrefix = "/opt/homebrew";
-
     taps = [
       "homebrew/cask"
       "homebrew/cask-fonts"
     ];
-
     brews = [
       "fzf"
       "ripgrep"
     ];
-
     onActivation = {
       autoUpdate = true;
       upgrade = true;

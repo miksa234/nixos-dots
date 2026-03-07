@@ -144,6 +144,7 @@
         nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit hostName systemName inputs;
+            isDarwin = true;
           };
           modules = [
             home-manager.darwinModules.home-manager
@@ -156,6 +157,7 @@
                 extraSpecialArgs = {
                   inherit system inputs;
                   standalone = false;
+                  isDarwin = true;
                 };
                 users.mika = import ./users/mika.nix;
               };
@@ -176,6 +178,7 @@
           extraSpecialArgs = {
             inherit system inputs;
             standalone = true;
+            isDarwin = true;
           };
         };
     };

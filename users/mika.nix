@@ -2,7 +2,8 @@
   config,
   pkgs,
   lib,
-  standalone,
+  standalone ? false,
+  isDarwin ? pkgs.stdenv.isDarwin,
   ...
 }:
 let
@@ -16,11 +17,11 @@ in
 {
   home = {
     username = "mika";
-    homeDirectory = "/home/mika";
-    stateVersion = "25.11";
+    homeDirectory = if isDarwin then "/Users/mika" else "/home/mika";
+    stateVersion = if isDarwin then "25.05" else "25.11";
   };
 
-  kitty = lib.mkIf (pkgs.stdenv.isDarwin) {
+  programs.kitty = lib.mkIf isDarwin {
     enable = true;
     font = {
       name = "Terminess Nerd Font";
@@ -40,7 +41,7 @@ in
       ../modules/xdg.nix
       ../modules/nix_settings.nix
     ]
-    ++ lib.optional (!pkgs.stdenv.isDarwin) ../modules/theme.nix;
+    ++ lib.optional (!isDarwin) [ ../modules/theme.nix ];
 
   nixpkgs = if standalone
   then {

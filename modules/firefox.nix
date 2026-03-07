@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, isDarwin, ... }:
 {
   imports = [ inputs.betterfox.homeModules.betterfox ];
 
@@ -27,7 +27,7 @@
         settings = {
           "browser.toolbars.bookmarks.visibility" = "always";
           "browser.download.start_downloads_in_tmp_dir" = false;
-          "browser.download.lastDir" = "/home/mika";
+          "browser.download.lastDir" = if isDarwin then "/User/mika" else "/home/mika";
         };
       };
       mulmon = {
@@ -39,7 +39,7 @@
           "browser.toolbars.bookmarks.visibility" = "always";
           "browser.download.useDownloadDir" = true;
           "browser.download.start_downloads_in_tmp_dir" = false;
-          "browser.download.lastDir" = "/home/mika";
+          "browser.download.lastDir" = if isDarwin then "/User/mika" else "/home/mika";
         };
       };
     };
