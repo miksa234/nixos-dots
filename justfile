@@ -4,6 +4,12 @@ user := `whoami`
 os:
     sudo nixos-rebuild switch --flake ./#{{hostname}} --impure
 
+darwin:
+    sudo darwin-rebuild switch --flake ./#{{hostname}} --impure
+
+darwin_rollback:
+    sudo darwin-rebuild switch --flake --rollback
+
 os_rollback:
     sudo nixos-rebuild switch --flake --rollback
 

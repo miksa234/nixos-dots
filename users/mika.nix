@@ -3,7 +3,6 @@
   pkgs,
   lib,
   standalone,
-
   ...
 }:
 let
@@ -21,21 +20,27 @@ in
     stateVersion = "25.11";
   };
 
-  imports = if standalone
-    then
-      [
-        ../modules/xdg.nix
-        ../modules/nix_settings.nix
-        ../modules/mbsync_timer.nix
-        ../modules/theme.nix
-        ../modules/firefox.nix
-      ]
-    else
-      [
-        ../modules/mbsync_timer.nix
-        ../modules/theme.nix
-        ../modules/firefox.nix
-      ];
+  kitty = lib.mkIf (pkgs.stdenv.isDarwin) {
+    enable = true;
+    font = {
+      name = "Terminess Nerd Font";
+      size = 18;
+    };
+    settings = {
+      confirm_os_window_close = 0;
+    };
+  };
+
+  imports =
+    [
+      ../modules/mbsync_timer.nix
+      ../modules/firefox.nix
+    ]
+    ++ lib.optionals standalone [
+      ../modules/xdg.nix
+      ../modules/nix_settings.nix
+    ]
+    ++ lib.optional (!pkgs.stdenv.isDarwin) ../modules/theme.nix;
 
   nixpkgs = if standalone
   then {
