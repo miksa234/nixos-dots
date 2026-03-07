@@ -17,8 +17,32 @@ in
 {
   home = {
     username = "mika";
-    homeDirectory = if isDarwin then "/Users/mika" else "/home/mika";
     stateVersion = if isDarwin then "25.05" else "25.11";
+    packages = with packageSets; lib.flatten [
+      system
+      shell
+      cli
+      xorg
+      media
+      fileManagement
+      network
+      office
+      email
+      development
+    ];
+    file = {
+      ".zshenv".source = link "${dotfiles}/.zshenv";
+      ".local" = {
+        source = link "${dotfiles}/.local";
+        recursive = true;
+      };
+      ".config/nix-zsh-plugins.zsh".text = ''
+        source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+        source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
+      '';
+    };
+  } // lib.optionalAttrs (!isDarwin ){
+    homeDirectory = "/home/mika/";
   };
 
   programs.kitty = lib.mkIf isDarwin {
@@ -49,30 +73,7 @@ in
   } else
     {};
 
-  home.packages = with packageSets; lib.flatten [
-    system
-    shell
-    cli
-    xorg
-    media
-    fileManagement
-    network
-    office
-    email
-    development
-  ];
 
-  home.file = {
-    ".zshenv".source = link "${dotfiles}/.zshenv";
-    ".local" = {
-      source = link "${dotfiles}/.local";
-      recursive = true;
-    };
-    ".config/nix-zsh-plugins.zsh".text = ''
-      source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-      source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
-    '';
-  };
 
   xdg.configFile = let
     filteredDirs = builtins.filter (dir: dir != "systemd") configDirs;

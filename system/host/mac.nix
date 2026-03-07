@@ -35,12 +35,16 @@
     users = {
       mika = {
         shell = pkgs.zsh;
+        home = "/Users/mika";
       };
       root = {
         shell = pkgs.zsh;
+        home = "/var/root";
       };
     };
   };
+
+  system.primaryUser = "mika";
 
   environment.systemPackages = with pkgs; [
     neovim
@@ -62,7 +66,7 @@
 
   homebrew = {
     enable = true;
-    brewPrefix = "/opt/homebrew";
+    prefix = "/opt/homebrew";
     taps = [
       "homebrew/cask"
       "homebrew/cask-fonts"

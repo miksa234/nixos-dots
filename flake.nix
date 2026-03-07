@@ -17,7 +17,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -140,11 +140,11 @@
           hostName = "mac";
           systemName   = darwinSystem;
           system = darwinSystem;
+          isDarwin = true;
         in
         nix-darwin.lib.darwinSystem {
           specialArgs = {
-            inherit hostName systemName inputs;
-            isDarwin = true;
+            inherit hostName systemName inputs isDarwin;
           };
           modules = [
             home-manager.darwinModules.home-manager
@@ -155,9 +155,8 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = {
-                  inherit system inputs;
+                  inherit system inputs isDarwin;
                   standalone = false;
-                  isDarwin = true;
                 };
                 users.mika = import ./users/mika.nix;
               };
@@ -171,14 +170,14 @@
         let
           system = builtins.currentSystem;
           pkgs   = nixpkgs.legacyPackages.${system};
+          isDarwin = builtins.currentSystem == "aarch64-darwin";
         in
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./users/mika.nix ];
           extraSpecialArgs = {
-            inherit system inputs;
+            inherit system inputs isDarwin;
             standalone = true;
-            isDarwin = true;
           };
         };
     };
