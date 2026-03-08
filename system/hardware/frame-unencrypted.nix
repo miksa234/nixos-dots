@@ -7,36 +7,28 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usbhid" "usb_storage" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/68d936fb-68be-4351-a557-874ef2d96efc"; # <--
-
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/adc85ee5-286c-44aa-9dfa-4580e59687dc";
-      fsType = "ext4";
-    };
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/2e36575d-3dc4-4760-9bc1-9bf055371805";
+      device = "/dev/disk/by-uuid/69e780cc-9ee1-4987-99eb-6c452ae66855";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/F656-048E";
+      device = "/dev/disk/by-uuid/7000-6EA2";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
     [
-      { device = "/dev/disk/by-uuid/f1c0a91f-0460-4ba8-a414-f49c90dfa399"; }
+      { device = "/dev/disk/by-uuid/fb532c05-67d1-4983-a518-e2616369b6ae"; }
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.enableAllFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -37,6 +37,7 @@ with pkgs; {
     htop
     sops
     direnv
+    cryptsetup
   ];
 
   shell = [

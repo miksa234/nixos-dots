@@ -51,6 +51,35 @@
       isDarwin = false;
     in
     {
+      frame =
+        let
+          hostName = "frame";
+          system   = linuxSystem;
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs hostName system isDarwin;
+          };
+          modules = [
+            nixos-hardware.nixosModules.framework-13-7040-amd
+            home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+            ./system/host/frame.nix
+            ./system/hardware/frame.nix
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit system inputs isDarwin;
+                  standalone = false;
+                };
+                users.mika = import ./users/mika.nix;
+              };
+            }
+          ];
+        };
       nixos-frame =
         let
           hostName = "nixos-frame";
@@ -66,7 +95,7 @@
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             ./system/host/frame.nix
-            ./system/hardware/frame.nix
+            ./system/hardware/frame-unencrypted.nix
             {
               home-manager = {
                 useGlobalPkgs = true;
