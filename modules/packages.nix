@@ -63,6 +63,7 @@ with pkgs; {
     killall
     zbar
     pstree
+    bat
   ];
 
   network = [
@@ -117,6 +118,7 @@ with pkgs; {
   fileManagement = [
     lf
     file
+    ffmpegthumbnailer
     poppler-utils
     atool
     odt2txt
