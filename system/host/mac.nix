@@ -165,10 +165,7 @@
   services.aerospace = {
     enable = true;
     settings = {
-      config-version = 2;
       after-startup-command = [ ];
-      start-at-login = false;
-      auto-reload-config = false;
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
       accordion-padding = 30;
@@ -176,7 +173,6 @@
       default-root-container-orientation = "auto";
       on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
       automatically-unhide-macos-hidden-apps = false;
-      persistent-workspaces = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
       on-mode-changed = [ ];
 
       key-mapping = {
@@ -239,12 +235,16 @@
         alt-shift-9 = "move-node-to-workspace 9";
 
 
-        alt-space = "exec-and-forget open -a Kitty";
-        alt-c = "exec-and-forget open -a Firefox";
+        alt-enter = "exec-and-forget open -n /Users/mika/Applications/kitty.app";
+        alt-c = "exec-and-forget open -n /Users/mika/Applications/Firefox.app";
+        alt-shift-w = "exec-and-forget open -n /Users/mika/Applications/Spotify.app";
+        alt-shift-q = "close --quit-if-last-window";
 
         # Workspace navigation
         alt-tab = "workspace-back-and-forth";
         alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
+
+        alt-f = "fullscreen";
 
         # Mode
         alt-shift-semicolon = "mode service";

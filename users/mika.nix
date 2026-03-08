@@ -50,7 +50,7 @@ in
         source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
       '';
     } // lib.optionalAttrs (isDarwin) {
-      "/Applications" = {
+      "/Users/mika/Applications" = {
         source = link "/Users/mika/Applications/Home Manager Apps/";
         recursive = true;
       };
