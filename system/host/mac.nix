@@ -93,8 +93,8 @@
         ApplePressAndHoldEnabled = false;
         AppleShowAllExtensions = true;
         AppleMetricUnits = 1;
-        InitialKeyRepeat = 30;
-        KeyRepeat = 3;
+        InitialKeyRepeat = 20;
+        KeyRepeat = 2;
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticDashSubstitutionEnabled = false;
         NSAutomaticQuoteSubstitutionEnabled = false;
@@ -268,9 +268,13 @@
   homebrew = {
     enable = true;
     prefix = "/opt/homebrew";
-    casks = [
-      "macfuse"
+    taps = [
+      "nohajc/anylinuxfs"
     ];
+    brews = [
+      "anylinuxfs"
+    ];
+    casks = [ ];
     onActivation = {
       autoUpdate = true;
       upgrade = true;
