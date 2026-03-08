@@ -65,8 +65,8 @@
             nixos-hardware.nixosModules.framework-13-7040-amd
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
-            ./system/host/host-frame.nix
-            ./system/hardware/hardware-frame.nix
+            ./system/host/frame.nix
+            ./system/hardware/frame.nix
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -93,8 +93,8 @@
           };
           modules = [
             home-manager.nixosModules.home-manager
-            ./system/host/host-frame.nix
-            ./system/hardware/hardware-vm.nix
+            ./system/host/frame.nix
+            ./system/hardware/vm.nix
             {
               home-manager = {
                 useGlobalPkgs = true;
@@ -121,8 +121,8 @@
           };
           modules = [
             home-manager.nixosModules.home-manager
-            ./system/host/host-server.nix
-            ./system/hardware/hardware-vm.nix
+            ./system/host/server.nix
+            ./system/hardware/vm.nix
             {
               home-manager = {
                 useGlobalPkgs = true;
