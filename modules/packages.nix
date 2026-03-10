@@ -170,6 +170,8 @@ with pkgs; {
     cmake
     gnumake
     gcc
+    npm
+    pnpm
 
     # Languages and runtimes
     libclang
