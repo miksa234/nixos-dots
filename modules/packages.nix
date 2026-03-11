@@ -7,7 +7,7 @@ let
 
   suckless = with pkgs; {
     dwm = dwm.overrideAttrs (old: {
-      src = fetchSucklessRepo "dwm" "sha256-npq3lOhCcAHJZZaAP6SlWs6y8g8+3ps3tYo2KQq0RaE=";
+      src = fetchSucklessRepo "dwm" "sha256-Hj985b6fRcYZm49Sd6188OewhCrBk5N0uWwQF3q7TH0=";
       buildInputs = old.buildInputs ++ [ libxcb ];
     });
 
@@ -20,7 +20,7 @@ let
     });
 
     slock = slock.overrideAttrs (old: {
-      src = fetchSucklessRepo "slock" "sha256-nj/GWQjJsQfQw4C+XJfXBBu9Txmn+WxnYlAHR07jvnQ=";
+      src = fetchSucklessRepo "slock" "sha256-4cKVyYRqgv9YGYYHFzzkIoJhdMlzb5GC72RQsCSEbG0=";
       buildInputs = old.buildInputs ++ (with xorg; [ libxinerama imlib2 libxft ]);
     });
 
@@ -174,7 +174,6 @@ with pkgs; {
     pnpm
 
     # Languages and runtimes
-    libclang
     luarocks
     javaPackages.compiler.openjdk17
     lua5_1

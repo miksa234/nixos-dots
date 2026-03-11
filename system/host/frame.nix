@@ -60,9 +60,7 @@
       "amd_iommu=on"
       "iommu=pt"
       "rtc_cmos.use_acpi_alarm=1"
-      "mem_sleep_default=s2idle"
-      "amdgpu.dcdebugmask=0x10"
-      "pcie_aspm=off"
+      "usbcore.autosuspend=-1"
     ];
   };
 
@@ -113,20 +111,7 @@
     fwupd.enable = true;
     openssh.enable = true;
     tlp.enable = false;
-    power-profiles-daemon.enable = false;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
-        };
-      };
-    };
+    power-profiles-daemon.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -193,7 +178,10 @@
   # fonts
   fonts.packages = with pkgs; [
     nerd-fonts.terminess-ttf
+    noto-fonts
+    noto-fonts-color-emoji
     terminus_font
   ];
+  fonts.fontconfig.useEmbeddedBitmaps = true;
 }
 
