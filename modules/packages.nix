@@ -65,6 +65,7 @@ with pkgs; {
     pstree
     bat
     gptfdisk
+    qrencode
   ];
 
   network = [
@@ -91,6 +92,7 @@ with pkgs; {
     pavucontrol
     pamixer
     pulseaudio
+    scrot
   ] ++ (with suckless; [ dwm st dmenu slock dwmblocks ]);
 
   fonts = [
