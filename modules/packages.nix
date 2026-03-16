@@ -1,9 +1,11 @@
 { pkgs, isDarwin }:
 let
-  fetchSucklessRepo = repo: hash: pkgs.fetchgit {
-    url = "git://popovic.xyz/${repo}.git";
-    inherit hash;
-  };
+  fetchSucklessRepo =
+    repo: hash:
+    pkgs.fetchgit {
+      url = "git://popovic.xyz/${repo}.git";
+      inherit hash;
+    };
 
   suckless = with pkgs; {
     dwm = dwm.overrideAttrs (old: {
@@ -21,7 +23,13 @@ let
 
     slock = slock.overrideAttrs (old: {
       src = fetchSucklessRepo "slock" "sha256-4cKVyYRqgv9YGYYHFzzkIoJhdMlzb5GC72RQsCSEbG0=";
-      buildInputs = old.buildInputs ++ (with xorg; [ libxinerama imlib2 libxft ]);
+      buildInputs =
+        old.buildInputs
+        ++ (with xorg; [
+          libxinerama
+          imlib2
+          libxft
+        ]);
     });
 
     dwmblocks = dwmblocks.overrideAttrs (old: {
@@ -29,7 +37,8 @@ let
     });
   };
 in
-with pkgs; {
+with pkgs;
+{
   system = [
     home-manager
     nix
@@ -72,7 +81,8 @@ with pkgs; {
     whois
     nmap
     wireguard-tools
-  ] ++ lib.optionals (!isDarwin) [
+  ]
+  ++ lib.optionals (!isDarwin) [
     nextcloud-client
     tigervnc
   ];
@@ -93,7 +103,14 @@ with pkgs; {
     pamixer
     pulseaudio
     scrot
-  ] ++ (with suckless; [ dwm st dmenu slock dwmblocks ]);
+  ]
+  ++ (with suckless; [
+    dwm
+    st
+    dmenu
+    slock
+    dwmblocks
+  ]);
 
   fonts = [
     noto-fonts-color-emoji
@@ -106,10 +123,12 @@ with pkgs; {
     spotify
     inkscape
     imagemagick
+    pandoc
     mediainfo
     transmission_4
     chromium
-  ] ++ lib.optionals (!isDarwin) [
+  ]
+  ++ lib.optionals (!isDarwin) [
     vlc
     sxiv
     gimp
@@ -134,17 +153,19 @@ with pkgs; {
     zathuraPkgs.zathura_cb
     zathuraPkgs.zathura_djvu
     zathuraPkgs.zathura_pdf_mupdf
-  ] ++ lib.optionals (!isDarwin) [
+  ]
+  ++ lib.optionals (!isDarwin) [
     nautilus
     gnome-epub-thumbnailer
   ];
 
   office = [
     groff
-  ] ++ lib.optionals (!isDarwin) [
+    texliveFull
+  ]
+  ++ lib.optionals (!isDarwin) [
     libreoffice-fresh
   ];
-
 
   email = [
     neomutt

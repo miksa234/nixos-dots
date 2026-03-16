@@ -190,6 +190,11 @@
     noto-fonts
     noto-fonts-color-emoji
     terminus_font
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    ubuntu-classic
+    corefonts
   ];
   fonts.fontconfig.useEmbeddedBitmaps = true;
 }
