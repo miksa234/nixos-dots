@@ -60,6 +60,8 @@
       "iommu=pt"
       "rtc_cmos.use_acpi_alarm=1"
       "usbcore.autosuspend=-1"
+      "pcie_port_pm=off"
+      "acpi.no_ec_wakup=1"
     ];
   };
 
