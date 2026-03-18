@@ -148,6 +148,15 @@
       enable = true;
       touchpad.naturalScrolling = false;
     };
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        AllowUsers = [ "myUser" ];
+      };
+    };
   };
 
   systemd.sleep.settings.Sleep = {
