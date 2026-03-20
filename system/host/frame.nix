@@ -64,10 +64,8 @@
       "acpi.no_ec_wakup=1"
     ];
     supportedFilesystems = [
-      "zfs"
       "btrfs"
       "ext4"
-      "xfs"
       "vfat"
       "ntfs"
     ];
@@ -199,7 +197,7 @@
     pstree
     wireguard-tools
     gnome.gvfs
-    ntfs-3g
+    ntfs3g
 
     upower
     lm_sensors
