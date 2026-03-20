@@ -63,6 +63,14 @@
       "pcie_port_pm=off"
       "acpi.no_ec_wakup=1"
     ];
+    supportedFilesystems = [
+      "zfs"
+      "btrfs"
+      "ext4"
+      "xfs"
+      "vfat"
+      "ntfs"
+    ];
   };
 
   # netowrk
@@ -113,6 +121,7 @@
   # services
   services = {
     automatic-timezoned.enable = true;
+    gvfs.enable = true;
     udisks2.enable = true;
     upower.enable = true;
     fwupd.enable = true;
@@ -189,6 +198,8 @@
     util-linux
     pstree
     wireguard-tools
+    gnome.gvfs
+    ntfs-3g
 
     upower
     lm_sensors
