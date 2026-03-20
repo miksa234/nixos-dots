@@ -46,7 +46,6 @@ with pkgs;
     htop
     sops
     direnv
-    cryptsetup
   ];
 
   shell = [
@@ -103,6 +102,8 @@ with pkgs;
     pamixer
     pulseaudio
     scrot
+    cryptsetup
+    chromium
   ]
   ++ (with suckless; [
     dwm
@@ -126,7 +127,6 @@ with pkgs;
     pandoc
     mediainfo
     transmission_4
-    chromium
   ]
   ++ lib.optionals (!isDarwin) [
     vlc
@@ -182,8 +182,6 @@ with pkgs;
     python313Packages.tiktoken
     luajitPackages.jsregexp
 
-    # Debuggers and tools
-    gdb
 
     # Language servers
     nil
