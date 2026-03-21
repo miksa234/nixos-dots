@@ -181,6 +181,7 @@ with pkgs;
     tree-sitter
     python313Packages.tiktoken
     luajitPackages.jsregexp
+    nodejs_24
 
     # Language servers
     nil

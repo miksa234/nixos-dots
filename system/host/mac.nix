@@ -135,7 +135,7 @@
     };
     keyboard = {
       enableKeyMapping = true;
-      # Remap §± to ~
+      swapLeftCtrlAndFn = true;
       nonUS.remapTilde = true;
       userKeyMapping = [
         {

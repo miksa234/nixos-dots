@@ -59,13 +59,6 @@ in
         source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
       '';
     };
-    #// lib.optionalAttrs (isDarwin) {
-    #  "/Users/mika/Applications" = {
-    #    source = link "/Users/mika/Applications/Home Manager Apps/";
-    #    recursive = true;
-    #    force = true;
-    #  };
-    #};
   }
   // lib.optionalAttrs (!isDarwin || standalone) {
     homeDirectory = if isDarwin then "/Users/mika" else "/home/mika";
