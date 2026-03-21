@@ -187,6 +187,7 @@ with pkgs;
     nil
     marksman
     nodejs
+    pnpm
 
     # Build tools
     cmake

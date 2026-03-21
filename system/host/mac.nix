@@ -160,9 +160,7 @@
     util-linux
     pstree
     wireguard-tools
-    cocoapods
-    openrsync
-    fastlane
+    darwin.xcode_26
   ];
 
   services.aerospace = {
@@ -293,8 +291,11 @@
     enable = true;
     user = "mika";
     prefix = "/opt/homebrew";
-    taps = [ ];
-    brews = [ ];
+    brews = [
+      "cocoapods"
+      "fastlane"
+      "watchman"
+    ];
     casks = [ ];
     onActivation = {
       autoUpdate = true;
