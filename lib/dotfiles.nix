@@ -2,6 +2,6 @@
   dotfiles = builtins.fetchGit {
     url = "git://popovic.xyz/dots.git";
     ref = "master";
-    rev = "a0e01e0b9494bdfd8ee7bd58afc2638639ef0859";
+    rev = "8e9e195a6cf15039c5fcef5d8af7d3b94ed36d5c";
   };
 }
