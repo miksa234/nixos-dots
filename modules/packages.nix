@@ -103,8 +103,6 @@ with pkgs;
     pulseaudio
     scrot
     cryptsetup
-    chromium
-    pnpm
   ]
   ++ (with suckless; [
     dwm
@@ -133,6 +131,7 @@ with pkgs;
     vlc
     sxiv
     gimp
+    chromium
   ];
 
   communication = [
