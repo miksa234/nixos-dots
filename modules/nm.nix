@@ -2,12 +2,12 @@
 {
   sops = {
     secrets = {
-      "networking/gajba" = {};
-      "networking/wg0_ponnect_prv" = {};
-      "networking/wg0_ponnect_pre" = {};
-      "networking/wg0_router_prv" = {};
-      "networking/wg0_server_prv" = {};
-      "networking/wg0_server_pre" = {};
+      "networking/gajba" = { };
+      "networking/wg0_ponnect_prv" = { };
+      "networking/wg0_ponnect_pre" = { };
+      "networking/wg0_router_prv" = { };
+      "networking/wg0_server_prv" = { };
+      "networking/wg0_server_pre" = { };
     };
     templates.wifi = {
       content = ''

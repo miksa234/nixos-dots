@@ -110,7 +110,7 @@
                 home-manager.nixosModules.home-manager
                 sops-nix.nixosModules.sops
                 ./machines/frame/configuration.nix
-                ./machines/hardware/hardware-unencrypted.nix
+                ./machines/vm/hardware.nix
                 {
                   home-manager = {
                     useGlobalPkgs = true;
