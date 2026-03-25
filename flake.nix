@@ -72,8 +72,8 @@
                 nixos-hardware.nixosModules.framework-13-7040-amd
                 home-manager.nixosModules.home-manager
                 sops-nix.nixosModules.sops
-                ./system/host/frame.nix
-                ./system/hardware/frame.nix
+                ./machines/frame/configuration.nix
+                ./machines/frame/hardware.nix
                 {
                   home-manager = {
                     useGlobalPkgs = true;
@@ -106,8 +106,8 @@
                 nixos-hardware.nixosModules.framework-13-7040-amd
                 home-manager.nixosModules.home-manager
                 sops-nix.nixosModules.sops
-                ./system/host/frame.nix
-                ./system/hardware/frame-unencrypted.nix
+                ./machines/frame/configuration.nix
+                ./machines/hardware/hardware-unencrypted.nix
                 {
                   home-manager = {
                     useGlobalPkgs = true;
@@ -139,8 +139,8 @@
               };
               modules = [
                 home-manager.nixosModules.home-manager
-                ./system/host/frame.nix
-                ./system/hardware/vm.nix
+                ./machines/frame/configuration.nix
+                ./machines/vm/hardware.nix
                 {
                   home-manager = {
                     useGlobalPkgs = true;
@@ -167,8 +167,8 @@
               };
               modules = [
                 home-manager.nixosModules.home-manager
-                ./system/host/server.nix
-                ./system/hardware/vm.nix
+                ./machines/server/configuration.nix
+                ./machines/server/hardware.nix
                 {
                   home-manager = {
                     backupFileExtension = true;
@@ -205,7 +205,7 @@
             modules = [
               home-manager.darwinModules.home-manager
               sops-nix.darwinModules.sops
-              ./system/host/mac.nix
+              ./machines/mac/configuration.nix
               {
                 home-manager = {
                   useGlobalPkgs = true;
