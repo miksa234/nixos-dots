@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   standalone ? false,
   isDarwin ? pkgs.stdenv.isDarwin,
   ...
@@ -19,6 +20,7 @@ in
     if standalone then
       {
         config.allowUnfree = true;
+        overlays = [ inputs.niri.overlays.niri ];
       }
     else
       { };
@@ -65,61 +67,19 @@ in
     homeDirectory = if isDarwin then "/Users/mika" else "/home/mika";
   };
 
-  programs.kitty = lib.mkIf isDarwin {
-    enable = true;
-    font = {
-      name = "Terminess Nerd Font";
-      size = 18;
-    };
-    settings = {
-      background_opacity = 0.93;
-      confirm_os_window_close = 0;
-      touch_scroll_multiplier = 1.0;
-    };
-  };
-
-  #  programs.niri.settings = {
-  #    prefer-no-csd = false;
-  #    layout = {
-  #      focus-ring = {
-  #        width = 2;
-  #      };
-  #    };
-  #    input = {
-  #      focus-follows-mouse.enable = true;
-  #      keyboard = {
-  #        xkb = {
-  #          layout = "us,de";
-  #          model = "pc104";
-  #          options = "grp:shifts_toggle";
-  #        };
-  #        repeat-rate = 50;
-  #        repeat-delay = 200;
-  #      };
-  #      touchpad = {
-  #        natural-scroll = false;
-  #        tap = true;
-  #      };
-  #      mouse = {
-  #        accel-profile = "flat";
-  #      };
-  #    };
-  #    binds = {
-  #      "Mod+Return".action.spawn = "alacritty";
-  #      "XF86AudioRaiseVolume".action.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
-  #      "XF86AudioLowerVolume".action.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
-  #    };
-  #  };
-
   imports = [
-    ../modules/mbsync_timer.nix
     ../modules/firefox.nix
+  ]
+  ++ lib.optionals (isDarwin) [
+    ../modules/kitty.nix
   ]
   ++ lib.optionals (!isDarwin) [
     ../modules/theme.nix
     ../modules/xdg.nix
+    ../modules/mbsync_timer.nix
+    ../modules/niri.nix
   ]
-  ++ lib.optionals standalone [
+  ++ lib.optionals (standalone) [
     ../modules/nix_settings.nix
   ];
 

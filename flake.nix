@@ -10,6 +10,8 @@
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    niri.url = "github:sobidoo/niri-flake";
+
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
 
     sops-nix = {

@@ -3,6 +3,7 @@
   lib,
   hostName,
   isDarwin,
+  inputs,
   ...
 }:
 {
@@ -182,6 +183,7 @@
 
   # packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   environment.systemPackages = with pkgs; [
     neovim
     wget
