@@ -11,6 +11,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     niri.url = "github:sodiboo/niri-flake";
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
 
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
 

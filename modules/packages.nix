@@ -57,11 +57,12 @@ with pkgs;
   ];
 
   wayland = [
-    alacritty
     swaybg
     swaylock
     xwayland-satellite
     fuzzel
+    wl-clipboard
+    grim
   ];
 
   cli = [
