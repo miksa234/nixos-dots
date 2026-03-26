@@ -27,7 +27,7 @@
           family = "Terminus";
           style = "Bold";
         };
-        size = 14;
+        size = 20;
       };
 
       colors = {
