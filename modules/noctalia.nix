@@ -20,12 +20,12 @@
         widgets = {
           center = [
             {
-              hideMode__added = "hidden";
-              maxWidth__added = 145;
-              scrollingMode__added = "hover";
-              showIcon__added = false;
-              textColor__added = "none";
-              useFixedWidth__added = false;
+              hideMode = "hidden";
+              maxWidth = 145;
+              scrollingMode = "hover";
+              showIcon = false;
+              textColor = "none";
+              useFixedWidth = false;
               id = "ActiveWindow";
             }
           ];
