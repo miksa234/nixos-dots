@@ -1,6 +1,12 @@
 hostname := `hostname`
 user := `whoami`
 
+os wayland:
+    IS_WAYLAND=1 sudo nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
+
+os xorg:
+    sudo nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
+
 os:
     sudo nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
 
@@ -14,6 +20,12 @@ os_rollback:
     sudo nixos-rebuild switch --flake --rollback
 
 hm:
+    home-manager switch -b backup --flake ./#{{user}} --impure
+
+hm wayland:
+    IS_WAYLAND=1 home-manager switch -b backup --flake ./#{{user}} --impure
+
+hm xorg:
     home-manager switch -b backup --flake ./#{{user}} --impure
 
 gc:

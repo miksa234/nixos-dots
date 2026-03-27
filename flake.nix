@@ -50,6 +50,9 @@
 
       pkgsLinux = nixpkgs.legacyPackages.${linuxSystem};
       pkgsDarwin = nixpkgs.legacyPackages.${darwinSystem};
+
+      # Set at build time with: IS_WAYLAND=1 nixos-rebuild switch --flake .#host
+      isWayland = builtins.getEnv "IS_WAYLAND" == "1";
     in
     {
       nixosConfigurations =
@@ -83,7 +86,12 @@
                     useGlobalPkgs = true;
                     useUserPackages = true;
                     extraSpecialArgs = {
-                      inherit system inputs isDarwin;
+                      inherit
+                        system
+                        inputs
+                        isDarwin
+                        isWayland
+                        ;
                       standalone = false;
                     };
                     users.mika = import ./users/mika.nix;
@@ -117,7 +125,12 @@
                     useGlobalPkgs = true;
                     useUserPackages = true;
                     extraSpecialArgs = {
-                      inherit system inputs isDarwin;
+                      inherit
+                        system
+                        inputs
+                        isDarwin
+                        isWayland
+                        ;
                       standalone = false;
                     };
                     users.mika = import ./users/mika.nix;
@@ -214,7 +227,12 @@
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = {
-                    inherit system inputs isDarwin;
+                    inherit
+                      system
+                      inputs
+                      isDarwin
+                      isWayland
+                      ;
                     standalone = false;
                   };
                   users.mika = import ./users/mika.nix;
@@ -235,7 +253,12 @@
             inherit pkgs;
             modules = [ ./users/mika.nix ];
             extraSpecialArgs = {
-              inherit system inputs isDarwin;
+              inherit
+                system
+                inputs
+                isDarwin
+                isWayland
+                ;
               standalone = true;
             };
           };

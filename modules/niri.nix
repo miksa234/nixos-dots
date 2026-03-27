@@ -42,7 +42,7 @@
           "Mod+D".action.spawn = "dmenu-wl_run";
           "Mod+P".action.spawn = "passmenu-otp";
           "Mod+B".action.spawn = "dmenu-bluetooth";
-          "Mod+Alt+S".action.spawn = "swaylock";
+          "Mod+Alt+L".action.spawn = "swaylock -f -c 000000";
           "Mod+W".action.spawn = "spotify";
           "Mod+Shift+P".action.spawn = "pavucontrol";
           "Mod+Shift+B".action.spawn = "nautilus";
@@ -164,7 +164,7 @@
         spawn-at-startup = [
           { command = [ "noctalia-shell" ]; }
           { command = [ "background" ]; }
-          { command = [ "mako" ]; }
+          { command = [ "dunst" ]; }
           { command = [ "niri-monitors" ]; }
           { command = [ "nextcloud --background" ]; }
           {

@@ -5,6 +5,7 @@
   inputs,
   standalone ? false,
   isDarwin ? pkgs.stdenv.isDarwin,
+  isWayland,
   ...
 }:
 let
@@ -42,9 +43,9 @@ in
         fonts
         email
         development
-        wayland
       ]
-      ++ lib.optionals (!isDarwin) [ xorg ]
+      ++ lib.optionals (!isDarwin || !isWayland) [ xorg ]
+      ++ lib.optionals (isWayland) [ wayland ]
     );
 
     file = {
@@ -77,6 +78,8 @@ in
     ../modules/theme.nix
     ../modules/xdg.nix
     ../modules/mbsync_timer.nix
+  ]
+  ++ lib.optionals (isWayland) [
     ../modules/niri.nix
     ../modules/alacitty.nix
     ../modules/noctalia.nix

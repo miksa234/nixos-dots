@@ -99,23 +99,13 @@ with pkgs;
   ];
 
   xorg = [
-    dunst
-    libnotify
     xclip
     feh
     redshift
     xidlehook
     xcompmgr
     xdotool
-    xkblayout-state
-    rsync
-    devour
-    power-profiles-daemon
-    pavucontrol
-    pamixer
-    pulseaudio
     scrot
-    cryptsetup
   ]
   ++ (with suckless; [
     dwm
@@ -146,6 +136,16 @@ with pkgs;
     sxiv
     gimp
     chromium
+    power-profiles-daemon
+    libnotify
+    pavucontrol
+    xkblayout-state
+    cryptsetup
+    rsync
+    devour
+    pamixer
+    pulseaudio
+    dunst
   ];
 
   communication = [
@@ -190,24 +190,20 @@ with pkgs;
   ];
 
   development = [
-    # tools
     gh
     tree-sitter
     python313Packages.tiktoken
     luajitPackages.jsregexp
 
-    # Language servers
     nil
     marksman
     nodejs
     pnpm
 
-    # Build tools
     cmake
     gnumake
     gcc
 
-    # Languages and runtimes
     luarocks
     javaPackages.compiler.openjdk17
     lua5_1

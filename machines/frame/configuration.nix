@@ -180,6 +180,11 @@
   hardware.bluetooth.enable = true;
   hardware.sensor.iio.enable = false; # disable light sensors
   security.rtkit.enable = true;
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   # packages
   nixpkgs.config.allowUnfree = true;
