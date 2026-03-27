@@ -21,12 +21,19 @@
 
         window-rules = [
           {
+            open-maximized = true;
+          }
+          {
             matches = [ { app-id = "spotify"; } ];
             open-on-workspace = "9";
           }
           {
             matches = [ { app-id = "Alacritty"; } ];
             opacity = 0.9;
+          }
+          {
+            matches = [ { app-id = "Firefox"; } ];
+            open-on-workspace = "9";
           }
         ];
         binds = {
@@ -91,6 +98,7 @@
           "Mod+Shift+8".action.move-window-to-workspace = "8";
           "Mod+Shift+9".action.move-window-to-workspace = "9";
 
+          "Mod+F1".action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           "Mod+F2".action.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
           "Mod+F3".action.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
           "Mod+F4".action.spawn-sh = "sudo xbacklight -dec 1";
@@ -117,6 +125,8 @@
           );
         };
         layout = {
+          always-center-single-column = true;
+          default-column-width.proportion = 0.4;
           border = {
             enable = true;
             width = 4;
@@ -155,8 +165,20 @@
           { command = [ "noctalia-shell" ]; }
           { command = [ "background" ]; }
           { command = [ "mako" ]; }
-          #{ command = [ "niri-monitors" ]; }
+          { command = [ "niri-monitors" ]; }
           { command = [ "nextcloud --background" ]; }
+          {
+            command = [
+              ''
+                swayidle -w \
+                     timeout 300 'swaylock -f -c 000000' \
+                     timeout 600 'swaymsg "output * power off"' \
+                          resume 'swaymsg "output * power on"' \
+                     timeout 900 'systemctl suspend-then-hibernate' \
+                     before-sleep 'swaylock -f -c 000000'
+              ''
+            ];
+          }
         ];
 
         outputs = {

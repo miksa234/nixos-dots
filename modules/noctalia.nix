@@ -45,12 +45,13 @@
           center = [
             {
               hideMode = "hidden";
-              maxWidth = 145;
+              maxWidth = 500;
               scrollingMode = "hover";
               showIcon = false;
               textColor = "none";
               useFixedWidth = false;
               id = "ActiveWindow";
+              fontWeight = "bold";
             }
           ];
           left = [
@@ -61,19 +62,18 @@
               enableScrollWheel = true;
               focusedColor = "primary";
               followFocusedScreen = false;
-              fontWeight = "bold";
               groupedBorderOpacity = 1;
               hideUnoccupied = false;
-              iconScale = 0.8;
               labelMode = "index";
               occupiedColor = "none";
-              pillSize = 0.67;
+              pillSize = 0.75;
               showApplications = false;
               showApplicationsHover = false;
               showBadge = true;
               showLabelsOnlyWhenOccupied = true;
               unfocusedIconsOpacity = 1;
               id = "Workspace";
+              fontWeight = "bold";
             }
           ];
           right = [
@@ -82,6 +82,7 @@
               iconColor = "none";
               id = "Bluetooth";
               textColor = "none";
+              fontWeight = "bold";
             }
             {
               displayMode = "onhover";
@@ -89,12 +90,14 @@
               id = "Volume";
               middleClickCommand = "pwvucontrol || pavucontrol";
               textColor = "none";
+              fontWeight = "bold";
             }
             {
               displayMode = "onhover";
               iconColor = "none";
               id = "Network";
               textColor = "none";
+              fontWeight = "bold";
             }
             {
               compactMode = false;
@@ -114,18 +117,17 @@
               showNetworkStats = false;
               showSwapUsage = false;
               textColor = "none";
-              useMonospaceFont = true;
               usePadding = false;
               id = "SystemMonitor";
+              fontWeight = "bold";
             }
             {
               clockColor = "none";
-              customFont = "";
               formatHorizontal = "HH:mm:ss";
               formatVertical = "HH mm - dd MM";
               id = "Clock";
               tooltipFormat = "HH:mm ddd, MMM dd";
-              useCustomFont = false;
+              fontWeight = "bold";
             }
           ];
         };
@@ -178,9 +180,9 @@
         ];
       };
       ui = {
-        fontDefault = "Terminess Nerd Font";
-        fontDefaultScale = 1.2;
-        fontFixed = "Terminess Nerd Font";
+        fontScale = 1.2;
+        fontDefault = "Terminus";
+        fontFixed = "Terminus";
       };
       wallpaper = {
         enabled = false;

@@ -65,6 +65,7 @@ with pkgs;
     wl-clipboard
     grim
     mako
+    swayidle
   ];
 
   cli = [
