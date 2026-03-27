@@ -79,6 +79,7 @@ in
     ../modules/mbsync_timer.nix
     ../modules/niri.nix
     ../modules/alacitty.nix
+    ../modules/noctalia.nix
   ]
   ++ lib.optionals (standalone) [
     ../modules/nix_settings.nix

@@ -64,6 +64,7 @@ with pkgs;
     dmenu-wayland
     wl-clipboard
     grim
+    mako
   ];
 
   cli = [

@@ -2,7 +2,6 @@
   lib,
   inputs,
   pkgs,
-  config,
   ...
 }:
 {
@@ -12,7 +11,7 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = pkgs.niri-unstable;
     settings =
       let
         noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -27,6 +26,10 @@
             matches = [ { app-id = "spotify"; } ];
             open-on-workspace = "9";
           }
+          {
+            matches = [ { app-id = "Alacritty"; } ];
+            opacity = 0.9;
+          }
         ];
         binds = {
           "Mod+Return".action.spawn = "${terminalCmd}";
@@ -36,10 +39,10 @@
           "Mod+B".action.spawn = "dmenu-bluetooth";
           "Mod+Alt+S".action.spawn = "swaylock";
           "Mod+W".action.spawn = "spotify";
-          "Mod+M".action.spawn = "TZ=Europe/Berlin ${terminalCmd} -e neomutt";
           "Mod+Shift+P".action.spawn = "pavucontrol";
           "Mod+Shift+B".action.spawn = "nautilus";
-          "Mod+Shift+W".action.spawn = "${terminalCmd} -e nmtui";
+          "Mod+Shift+W".action.spawn-sh = "${terminalCmd} -e nmtui";
+          "Mod+M".action.spawn-sh = "TZ=Europe/Berlin ${terminalCmd} -e neomutt";
           "Mod+Shift+R".action.spawn-sh = "background";
 
           "Mod+Shift+E".action.quit.skip-confirmation = true;
@@ -153,6 +156,9 @@
         spawn-at-startup = [
           { command = [ "${noctaliaCmd}" ]; }
           { command = [ "background" ]; }
+          { command = [ "mako" ]; }
+          #{ command = [ "niri-monitors" ]; }
+          { command = [ "nextcloud --background" ]; }
         ];
 
         outputs = {
