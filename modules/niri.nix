@@ -14,8 +14,6 @@
     package = pkgs.niri-unstable;
     settings =
       let
-        noctaliaPkg = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        noctaliaCmd = lib.getExe noctaliaPkg;
         terminalCmd = lib.getExe pkgs.alacritty;
       in
       {
@@ -154,7 +152,7 @@
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         spawn-at-startup = [
-          { command = [ "${noctaliaCmd}" ]; }
+          { command = [ "noctalia-shell" ]; }
           { command = [ "background" ]; }
           { command = [ "mako" ]; }
           #{ command = [ "niri-monitors" ]; }

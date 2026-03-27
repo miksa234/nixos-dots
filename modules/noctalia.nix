@@ -1,18 +1,42 @@
 { inputs, ... }:
 {
-  # import the home manager module
   imports = [
     inputs.noctalia.homeModules.default
   ];
 
   programs.noctalia-shell = {
     enable = true;
+    colors = {
+      mError = "#ff6b6b";
+      mOnError = "#0b0f14";
+
+      mPrimary = "#A96C8A";
+      mOnPrimary = "#ffffff";
+
+      mSecondary = "#6CA98A";
+      mOnSecondary = "#ffffff";
+
+      mSurface = "#0b0f14";
+      mOnSurface = "#e6edf3";
+
+      mSurfaceVariant = "#111827";
+      mOnSurfaceVariant = "#c9d1d9";
+
+      mTertiary = "#c583d0";
+      mOnTertiary = "#07130a";
+
+      mHover = "#1f2937";
+      mOnHover = "#e6edf3";
+
+      mOutline = "#30363d";
+      mShadow = "#000000";
+    };
     settings = {
       bar = {
         backgroundOpacity = 0;
         contentPadding = 10;
         enableExclusionZoneInset = false;
-        fontScale = 1.1;
+        fontScale = 1.2;
         outerCorners = false;
         showCapsule = false;
         useSeparateOpacity = true;
@@ -106,19 +130,13 @@
           ];
         };
       };
-      colorSchemes = {
-        predefinedScheme = "Rose Pine";
-      };
-      dock = {
-        enabled = false;
-      };
+      dock.enabled = false;
       general = {
         avatarImage = "";
         radiusRatio = 0;
+        enableShadows = false;
       };
-      location = {
-        name = "Lisbon";
-      };
+      location.name = "Lisbon";
       sessionMenu = {
         largeButtonsStyle = false;
         powerOptions = [
@@ -161,7 +179,7 @@
       };
       ui = {
         fontDefault = "Terminess Nerd Font";
-        fontDefaultScale = 1.12;
+        fontDefaultScale = 1.2;
         fontFixed = "Terminess Nerd Font";
       };
       wallpaper = {
