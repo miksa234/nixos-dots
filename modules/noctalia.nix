@@ -126,6 +126,7 @@
         enableShadows = false;
       };
       location.name = "Lisbon";
+      colorSchemes.useWallPaperColors = true;
       sessionMenu = {
         largeButtonsStyle = false;
         powerOptions = [

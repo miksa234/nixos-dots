@@ -91,10 +91,10 @@
           "Mod+H".action.focus-monitor-left = { };
           "Mod+L".action.focus-monitor-right = { };
 
-          "Mod+WheelScrollDown".action.focus-column-left = { };
-          "Mod+WheelScrollUp".action.focus-column-right = { };
-          "Mod+Ctrl+WheelScrollDown".action.focus-workspace-down = { };
-          "Mod+Ctrl+WheelScrollUp".action.focus-workspace-up = { };
+          "Mod+Ctrl+WheelScrollDown".action.focus-column-left = { };
+          "Mod+Ctrl+WheelScrollUp".action.focus-column-right = { };
+          "Mod+WheelScrollDown".action.focus-workspace-down = { };
+          "Mod+WheelScrollUp".action.focus-workspace-up = { };
 
           "Mod+Shift+K".action.move-column-right = { };
           "Mod+Shift+J".action.move-column-left = { };
@@ -198,6 +198,7 @@
           { command = [ "noctalia-shell" ]; }
           { command = [ "background" ]; }
           { command = [ "dunst" ]; }
+          { command = [ "check-mail" ]; }
           {
             command = [
               "sh"
@@ -212,12 +213,21 @@
           }
           {
             command = [
-              "swayidle -w"
-              "timeout 300 'swaylock -f -c 000000'"
-              "timeout 600 'swaymsg \"output * power off\"'"
-              "resume 'swaymsg \"output * power on\"'"
-              "timeout 900 'systemctl suspend-then-hibernate'"
-              "before-sleep 'swaylock -f -c 000000'"
+              "swayidle"
+              "-w"
+              "timeout"
+              "300"
+              "swaylock -f -c 000000"
+              "timeout"
+              "600"
+              "swaymsg \"output * power off\""
+              "resume"
+              "swaymsg \"output * power on\""
+              "timeout"
+              "900"
+              "systemctl suspend-then-hibernate"
+              "before-sleep"
+              "swaylock -f -c 000000"
             ];
           }
         ];
