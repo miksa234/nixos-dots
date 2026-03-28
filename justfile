@@ -1,14 +1,8 @@
 hostname := `hostname`
 user := `whoami`
 
-os wayland:
-    IS_WAYLAND=1 sudo nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
-
-os xorg:
-    sudo nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
-
-os:
-    sudo nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
+os target="xorg":
+    sudo {{ if target == "wayland" { "IS_WAYLAND=1 " } else { "" } }} nixos-rebuild switch --flake ./#{{hostname}} --impure --show-trace
 
 darwin:
     sudo darwin-rebuild switch --flake ./#{{hostname}} --impure
@@ -19,14 +13,8 @@ darwin_rollback:
 os_rollback:
     sudo nixos-rebuild switch --flake --rollback
 
-hm:
-    home-manager switch -b backup --flake ./#{{user}} --impure
-
-hm wayland:
-    IS_WAYLAND=1 home-manager switch -b backup --flake ./#{{user}} --impure
-
-hm xorg:
-    home-manager switch -b backup --flake ./#{{user}} --impure
+hm target="xorg":
+    {{ if target == "wayland" { "IS_WAYLAND='1' " } else { "" } }}home-manager switch -b backup --flake ./#{{user}} --impure
 
 gc:
     sudo nix-collect-garbage --delete-older-than 7d

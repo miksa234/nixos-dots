@@ -44,7 +44,7 @@ in
         email
         development
       ]
-      ++ lib.optionals (!isDarwin || !isWayland) [ xorg ]
+      ++ lib.optionals (!isDarwin && !isWayland) [ xorg ]
       ++ lib.optionals (isWayland) [ wayland ]
     );
 

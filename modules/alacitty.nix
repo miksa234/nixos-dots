@@ -11,7 +11,7 @@
           x = 2;
           y = 2;
         };
-        opacity = 0.98;
+        opacity = 0.99;
       };
 
       font = {

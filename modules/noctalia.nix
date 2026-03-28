@@ -60,7 +60,7 @@
               colorizeIcons = false;
               emptyColor = "none";
               enableScrollWheel = true;
-              focusedColor = "primary";
+              focusedColor = "none";
               followFocusedScreen = false;
               groupedBorderOpacity = 1;
               hideUnoccupied = false;
@@ -78,26 +78,16 @@
           ];
           right = [
             {
-              displayMode = "onhover";
-              iconColor = "none";
+              id = "NotificationHistory";
+            }
+            {
               id = "Bluetooth";
-              textColor = "none";
-              fontWeight = "bold";
             }
             {
-              displayMode = "onhover";
-              iconColor = "none";
               id = "Volume";
-              middleClickCommand = "pwvucontrol || pavucontrol";
-              textColor = "none";
-              fontWeight = "bold";
             }
             {
-              displayMode = "onhover";
-              iconColor = "none";
               id = "Network";
-              textColor = "none";
-              fontWeight = "bold";
             }
             {
               compactMode = false;
@@ -122,11 +112,8 @@
               fontWeight = "bold";
             }
             {
-              clockColor = "none";
               formatHorizontal = "HH:mm:ss";
-              formatVertical = "HH mm - dd MM";
               id = "Clock";
-              tooltipFormat = "HH:mm ddd, MMM dd";
               fontWeight = "bold";
             }
           ];

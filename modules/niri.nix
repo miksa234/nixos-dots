@@ -18,22 +18,25 @@
       in
       {
         prefer-no-csd = true;
+        hotkey-overlay.skip-at-startup = true;
 
         window-rules = [
           {
+            matches = [ { app-id = "spotify"; } ];
+            open-on-workspace = "9";
             open-maximized = true;
           }
           {
-            matches = [ { app-id = "spotify"; } ];
-            open-on-workspace = "9";
-          }
-          {
             matches = [ { app-id = "Alacritty"; } ];
-            opacity = 0.9;
+            opacity = 0.92;
           }
           {
-            matches = [ { app-id = "Firefox"; } ];
-            open-on-workspace = "9";
+            matches = [ { app-id = "firefox"; } ];
+            open-maximized = true;
+          }
+          {
+            matches = [ { app-id = "telegram"; } ];
+            open-maximized = true;
           }
         ];
         binds = {
@@ -49,6 +52,7 @@
           "Mod+Shift+W".action.spawn-sh = "${terminalCmd} -e nmtui";
           "Mod+M".action.spawn-sh = "TZ=Europe/Berlin ${terminalCmd} -e neomutt";
           "Mod+Shift+R".action.spawn-sh = "background";
+          "Mod+Shift+Slash".action.show-hotkey-overlay = { };
 
           "Mod+Shift+E".action.quit.skip-confirmation = true;
           "Mod+Shift+Q".action.close-window = { };
@@ -125,8 +129,7 @@
           );
         };
         layout = {
-          always-center-single-column = true;
-          default-column-width.proportion = 0.4;
+          default-column-width.proportion = 0.5;
           border = {
             enable = true;
             width = 4;
@@ -137,7 +140,7 @@
               color = "#263238";
             };
           };
-          gaps = 15;
+          gaps = 10;
           focus-ring = {
             enable = false;
           };
