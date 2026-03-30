@@ -17,7 +17,7 @@ hm target="xorg":
     {{ if target == "wayland" { "IS_WAYLAND='1' " } else { "" } }}home-manager switch -b backup --flake ./#{{user}} --impure
 
 gc:
-    sudo nix-collect-garbage --delete-older-than 7d
+    sudo nix-collect-garbage --delete-older-than 1d
     nix-collect-garbage --delete-older-than 7d
 
 ls-nixos-packages:

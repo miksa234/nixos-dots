@@ -201,6 +201,20 @@
           { command = [ "check-mail" ]; }
           {
             command = [
+              "dbus-update-activation-environment"
+              "--systemd DISPLAY XDG_CURRENT_DESKOP=niri"
+            ];
+          }
+          {
+            command = [
+              "systemctl"
+              " --user"
+              "import-environment DISPLAY XDG_CURRENT_DESKTOP=niri"
+            ];
+          }
+
+          {
+            command = [
               "sh"
               "niri-monitors"
             ];
@@ -233,7 +247,6 @@
         ];
 
         outputs = {
-          "BOE 0x0BCA Unknown".enable = false;
           "PNP(BNQ) BenQ GL2760 H3E04203019" = {
             enable = true;
             scale = 1;
@@ -258,8 +271,18 @@
               y = 0;
             };
           };
+          "BOE 0x0BCA Unknown" = {
+            enable = true;
+            mode = {
+              width = 2256;
+              height = 1504;
+            };
+            position = {
+              x = 3840;
+              y = 0;
+            };
+          };
         };
-
         input = {
           focus-follows-mouse.enable = true;
           keyboard = {
