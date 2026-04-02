@@ -197,7 +197,7 @@
         spawn-at-startup = [
           { command = [ "noctalia-shell" ]; }
           { command = [ "background" ]; }
-          { command = [ "dunst" ]; }
+          #          { command = [ "dunst" ]; }
           { command = [ "check-mail" ]; }
           {
             command = [

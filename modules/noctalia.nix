@@ -81,6 +81,9 @@
               id = "NotificationHistory";
             }
             {
+              id = "Battery";
+            }
+            {
               id = "Bluetooth";
             }
             {
