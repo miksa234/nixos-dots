@@ -78,7 +78,7 @@
             "Mod+M".action.spawn-sh = "TZ=Europe/Berlin ${terminalCmd} -e neomutt";
             "Mod+Shift+R".action.spawn-sh = "background";
             "Mod+Shift+Slash".action.show-hotkey-overlay = { };
-            "Mod+Ctrl+Space".action.spawn-sh = "${nshic} notifications removeOldestHistory";
+            "Mod+Ctrl+Space".action.spawn-sh = "${nshic} removeOldestHistory";
             "Ctrl+Space".action.spawn-sh = "${nshic} dismissOldest";
             "Mod+Space".action.spawn-sh = "${nshic} toggleHistory";
 
