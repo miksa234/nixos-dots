@@ -77,7 +77,7 @@ in
   ++ lib.optionals (!isDarwin) [
     ../modules/theme.nix
     ../modules/xdg.nix
-    ../modules/mbsync_timer.nix
+    ../modules/systemd-services.nix
   ]
   ++ lib.optionals (isWayland) [
     ../modules/niri.nix
@@ -85,7 +85,7 @@ in
     ../modules/noctalia.nix
   ]
   ++ lib.optionals (standalone) [
-    ../modules/nix_settings.nix
+    ../modules/nix-settings.nix
   ];
 
   xdg.configFile =

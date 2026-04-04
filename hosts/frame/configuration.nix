@@ -9,7 +9,7 @@
 {
   imports = [
     ../../users/root.nix
-    ../../modules/nix_settings.nix
+    ../../modules/nix-settings.nix
     ../../modules/nm.nix
   ];
 

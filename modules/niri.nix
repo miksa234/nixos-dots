@@ -225,7 +225,7 @@
 
           {
             command = [
-              "sh"
+              "zsh"
               "niri-monitors"
             ];
           }

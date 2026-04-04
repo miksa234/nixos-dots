@@ -43,7 +43,7 @@
         ExecStart = "${pkgs.zsh}/bin/zsh -c 'zsh .local/bin/scripts/niri-wakeup-monitors'";
       };
       Install = {
-        wantedBy = [ "default.target" ];
+        WantedBy = [ "default.target" ];
       };
     };
   };
