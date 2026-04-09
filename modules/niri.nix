@@ -65,7 +65,7 @@
         };
         binds =
           let
-            nshic = "noctalia-shell ipc call notifications";
+            nshic = "noctalia-shell ipc call";
           in
           {
             "Mod+Return".action.spawn = "${terminalCmd}";
@@ -81,9 +81,9 @@
             "Mod+M".action.spawn-sh = "TZ=Europe/Berlin ${terminalCmd} -e neomutt";
             "Mod+Shift+R".action.spawn-sh = "background";
             "Mod+Shift+Slash".action.show-hotkey-overlay = { };
-            "Mod+Ctrl+Space".action.spawn-sh = "${nshic} removeOldestHistory";
-            "Ctrl+Space".action.spawn-sh = "${nshic} dismissOldest";
-            "Mod+Space".action.spawn-sh = "${nshic} toggleHistory";
+            "Mod+Ctrl+Space".action.spawn-sh = "${nshic} notifications removeOldestHistory";
+            "Ctrl+Space".action.spawn-sh = "${nshic} notifications dismissOldest";
+            "Mod+Space".action.spawn-sh = "${nshic} notifications toggleHistory";
 
             "Mod+Shift+E".action.quit.skip-confirmation = true;
             "Mod+Shift+Q".action.close-window = { };
@@ -157,8 +157,8 @@
             "Mod+F1".action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             "Mod+F2".action.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
             "Mod+F3".action.spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
-            "Mod+F4".action.spawn-sh = "sudo xbacklight -dec 1";
-            "Mod+F5".action.spawn-sh = "sudo xbacklight -inc 1";
+            "Mod+F4".action.spawn-sh = "${nshic} brightness decrease";
+            "Mod+F5".action.spawn-sh = "${nshic} brightness increase";
 
             "Mod+Ctrl+H".action.set-column-width = "-5%";
             "Mod+Ctrl+L".action.set-column-width = "+5%";
