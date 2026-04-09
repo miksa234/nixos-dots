@@ -26,7 +26,7 @@
         window-rules = [
           {
             matches = [ { app-id = "spotify"; } ];
-            open-on-workspace = "r9";
+            open-on-workspace = "l9";
             open-maximized = true;
           }
           {
@@ -53,15 +53,15 @@
           "l7" = { };
           "l8" = { };
           "l9" = { };
-          "r1" = { };
-          "r2" = { };
-          "r3" = { };
-          "r4" = { };
-          "r5" = { };
-          "r6" = { };
-          "r7" = { };
-          "r8" = { };
-          "r9" = { };
+          #"r1" = { };
+          #"r2" = { };
+          #"r3" = { };
+          #"r4" = { };
+          #"r5" = { };
+          #"r6" = { };
+          #"r7" = { };
+          #"r8" = { };
+          #"r9" = { };
         };
         binds =
           let
@@ -275,7 +275,7 @@
             };
           };
           "BOE 0x0BCA Unknown" = {
-            enable = false;
+            enable = true;
             mode = {
               width = 2256;
               height = 1504;
