@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (import ../modules/dotfiles.nix) dotfiles;
+  inherit (import ../modules/dotfiles.nix) dotfiles nvim-config;
 in
 {
   environment.pathsToLink =
@@ -34,6 +34,11 @@ in
                 recursive = true;
                 force = true;
               };
+              mkNvimfileLink = path: {
+                source = config.lib.file.mkOutOfStoreSymlink "${nvim-config}";
+                recursive = true;
+                force = true;
+              };
             in
             {
               # zsh no plugins
@@ -47,9 +52,9 @@ in
               ".local/bin/.keep".text = "";
 
               # nvim no plugins
-              ".config/nvim/init.lua" = mkDotfileLink ".config/nvim/init.lua";
-              ".config/nvim/after" = mkDotfileLink ".config/nvim/after";
-              ".config/nvim/lua/config" = mkDotfileLink ".config/nvim/lua/config";
+              ".config/nvim/init.lua" = mkNvimfileLink ".config/nvim/init.lua";
+              ".config/nvim/after" = mkNvimfileLink ".config/nvim/after";
+              ".config/nvim/lua/config" = mkNvimfileLink ".config/nvim/lua/config";
             };
         }
         // lib.optionalAttrs (!isDarwin) {

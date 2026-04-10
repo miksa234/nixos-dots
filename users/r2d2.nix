@@ -9,7 +9,7 @@ let
   packageSets = import ../modules/packages.nix { inherit pkgs; };
 
   link = config.lib.file.mkOutOfStoreSymlink;
-  inherit (import ../modules/dotfiles.nix) dotfiles;
+  inherit (import ../modules/dotfiles.nix) dotfiles nvim-config;
   configDirs = builtins.attrNames (builtins.readDir "${dotfiles}/.config");
 in
 {
@@ -38,13 +38,18 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
         recursive = true;
       };
+      mkNvimfileLink = path: {
+        source = config.lib.file.mkOutOfStoreSymlink "${nvim-config}";
+        recursive = true;
+        force = true;
+      };
     in
     {
       ".zshenv" = mkDotfileLink ".zshenv";
       ".config/zsh/.zshrc" = mkDotfileLink ".config/zsh/.zshrc";
       ".config/shell" = mkDotfileLink ".config/shell";
       ".config/git" = mkDotfileLink ".config/git";
-      ".config/nvim" = mkDotfileLink ".config/nvim";
+      ".config/nvim" = mkNvimfileLink ".config/nvim";
       ".config/nix-zsh-plugins.zsh".text = ''
         source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
         source ${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh

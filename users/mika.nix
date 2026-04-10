@@ -13,7 +13,7 @@ let
   packageSets = import ../modules/packages.nix { inherit pkgs isDarwin; };
 
   link = config.lib.file.mkOutOfStoreSymlink;
-  inherit (import ../modules/dotfiles.nix) dotfiles;
+  inherit (import ../modules/dotfiles.nix) dotfiles nvim-config;
   configDirs = builtins.attrNames (builtins.readDir "${dotfiles}/.config");
 in
 {
@@ -55,6 +55,11 @@ in
       };
       ".local" = {
         source = link "${dotfiles}/.local";
+        recursive = true;
+        force = true;
+      };
+      ".config/nvim" = {
+        source = link "${nvim-config}";
         recursive = true;
         force = true;
       };
