@@ -2,7 +2,7 @@
   dotfiles = builtins.fetchGit {
     url = "git://popovic.xyz/dots.git";
     ref = "master";
-    rev = "18ca191d39710b320ffbed04e808d84dc19ef78b";
+    rev = "16f7908b64b131dca39309e7e82b3ca364dcd187";
 
   };
   nvim-config = builtins.fetchGit {
