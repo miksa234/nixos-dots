@@ -163,7 +163,7 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = [ "myUser" ];
+        AllowUsers = [ "mika" ];
       };
     };
   };

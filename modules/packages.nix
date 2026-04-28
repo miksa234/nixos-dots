@@ -93,8 +93,11 @@ with pkgs;
     whois
     nmap
     wireguard-tools
+    localsend
   ]
   ++ lib.optionals (!isDarwin) [
+    uxplay
+    localsend
     nextcloud-client
     tigervnc
   ];
