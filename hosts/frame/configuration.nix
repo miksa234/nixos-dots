@@ -153,6 +153,7 @@
   }
   // lib.optionalAttrs (!isDarwin) {
     gnome.gnome-keyring.enable = true;
+    security.pam.services.gdm.enableGnomeKeyring = true;
     libinput = {
       enable = true;
       touchpad.naturalScrolling = false;
@@ -163,7 +164,7 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = [ "myUser" ];
+        AllowUsers = [ "mika" ];
       };
     };
   };
