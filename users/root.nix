@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (import ../modules/dotfiles.nix) dotfiles nvim-config;
+  inherit (import ../modules/config-dots.nix) config-dots config-nvim;
 in
 {
   environment.pathsToLink =
@@ -30,12 +30,12 @@ in
           file =
             let
               mkDotfileLink = path: {
-                source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
+                source = config.lib.file.mkOutOfStoreSymlink "${config-dots}/${path}";
                 recursive = true;
                 force = true;
               };
               mkNvimfileLink = path: {
-                source = config.lib.file.mkOutOfStoreSymlink "${nvim-config}";
+                source = config.lib.file.mkOutOfStoreSymlink "${config-nvim}";
                 recursive = true;
                 force = true;
               };

@@ -13,8 +13,8 @@ let
   packageSets = import ../modules/packages.nix { inherit pkgs isDarwin; };
 
   link = config.lib.file.mkOutOfStoreSymlink;
-  inherit (import ../modules/dotfiles.nix) dotfiles nvim-config;
-  configDirs = builtins.attrNames (builtins.readDir "${dotfiles}/.config");
+  inherit (import ../modules/config-dots.nix) config-dots config-nvim;
+  configDirs = builtins.attrNames (builtins.readDir "${config-dots}/.config");
 in
 {
   nixpkgs =
@@ -50,16 +50,16 @@ in
 
     file = {
       ".zshenv" = {
-        source = link "${dotfiles}/.zshenv";
+        source = link "${config-dots}/.zshenv";
         force = true;
       };
       ".local" = {
-        source = link "${dotfiles}/.local";
+        source = link "${config-dots}/.local";
         recursive = true;
         force = true;
       };
       ".config/nvim" = {
-        source = link "${nvim-config}";
+        source = link "${config-nvim}";
         recursive = true;
         force = true;
       };
@@ -95,7 +95,7 @@ in
       filteredDirs = builtins.filter (dir: dir != "systemd") configDirs;
     in
     lib.genAttrs filteredDirs (dir: {
-      source = link "${dotfiles}/.config/${dir}";
+      source = link "${config-dots}/.config/${dir}";
       recursive = true;
       force = true;
     });

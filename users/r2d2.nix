@@ -7,10 +7,7 @@
 }:
 let
   packageSets = import ../modules/packages.nix { inherit pkgs; };
-
-  link = config.lib.file.mkOutOfStoreSymlink;
-  inherit (import ../modules/dotfiles.nix) dotfiles nvim-config;
-  configDirs = builtins.attrNames (builtins.readDir "${dotfiles}/.config");
+  inherit (import ../modules/config-dots.nix) config-dots config-nvim;
 in
 {
   home = {
@@ -35,11 +32,11 @@ in
   home.file =
     let
       mkDotfileLink = path: {
-        source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
+        source = config.lib.file.mkOutOfStoreSymlink "${config-dots}/${path}";
         recursive = true;
       };
       mkNvimfileLink = path: {
-        source = config.lib.file.mkOutOfStoreSymlink "${nvim-config}";
+        source = config.lib.file.mkOutOfStoreSymlink "${config-nvim}";
         recursive = true;
         force = true;
       };
