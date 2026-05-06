@@ -40,18 +40,6 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./dendritic/dendritic.nix
-        ./dendritic/systems.nix
-        ./dendritic/meta.nix
-        ./dendritic/nixos.nix
-        ./dendritic/nixos-checks.nix
-        ./dendritic/nixos-frame.nix
-        ./dendritic/darwin.nix
-        ./dendritic/darwin-mac.nix
-        ./dendritic/home-manager.nix
-        ./dendritic/users-mika.nix
-      ];
-    };
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      (inputs.import-tree ./modules);
 }
