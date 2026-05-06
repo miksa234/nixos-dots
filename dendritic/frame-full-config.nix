@@ -75,7 +75,7 @@
 
   # Services
   services = {
-    automatic-timezoned.enable = true;
+    automatic-timezoned.enable = false;  # Conflicts with explicit timeZone setting
     avahi.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
@@ -127,6 +127,9 @@
       "segger-jlink-qt4-772o"
     ];
   };
+
+  # Programs
+  programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim git wget htop
