@@ -1,0 +1,5 @@
+{
+  config-dots = {};
+  config-nvim = {};
+}
+
