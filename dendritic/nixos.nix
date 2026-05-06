@@ -44,7 +44,7 @@
             };
           in
           lib.optional (config.flake.nixosConfigurations != {}) {
-            name = "${config.linuxSystem}/configurations:nixos:${name}";
+            name = "nixos-${name}";
             value = nixos.config.system.build.toplevel;
           }
         )
