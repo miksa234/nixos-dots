@@ -4,21 +4,6 @@
 
   programs.firefox = {
     enable = true;
-    betterfox = {
-      enable = true;
-      profiles.frame = {
-        settings = {
-          fastfox.enable = true;
-          peskyfox.enable = true;
-        };
-      };
-      profiles.mulmon = {
-        settings = {
-          fastfox.enable = true;
-          peskyfox.enable = true;
-        };
-      };
-    };
     profiles = {
       frame = {
         id = 0;

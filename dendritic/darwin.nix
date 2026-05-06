@@ -24,6 +24,11 @@
       { module }:
       inputs.nix-darwin.lib.darwinSystem {
         system = config.darwinSystem;
+        specialArgs = {
+          inherit inputs;
+          isDarwin = true;
+          hostName = name;
+        };
         modules = [ module ];
       }
     );

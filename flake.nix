@@ -30,7 +30,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Dendritic pattern dependencies
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -48,9 +47,11 @@
         ./dendritic/meta.nix
         ./dendritic/nixos.nix
         ./dendritic/nixos-checks.nix
+        ./dendritic/nixos-frame.nix
         ./dendritic/darwin.nix
+        ./dendritic/darwin-mac.nix
         ./dendritic/home-manager.nix
-        ./dendritic/frame-config.nix
+        ./dendritic/users-mika.nix
       ];
     };
 }

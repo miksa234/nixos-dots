@@ -3,8 +3,7 @@
   pkgs,
   lib,
   inputs,
-  standalone ? false,
-  isDarwin ? pkgs.stdenv.isDarwin,
+  isDarwin,
   isWayland,
   ...
 }:
@@ -15,14 +14,9 @@ let
   link = config.lib.file.mkOutOfStoreSymlink;
 in
 {
-  nixpkgs =
-    if standalone then
-      {
-        config.allowUnfree = true;
-        overlays = [ inputs.niri.overlays.niri ];
-      }
-    else
-      { };
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
 
   home = {
     username = "mika";
@@ -53,8 +47,8 @@ in
       '';
     };
   }
-  // lib.optionalAttrs (!isDarwin || standalone) {
-    homeDirectory = if isDarwin then "/Users/mika" else "/home/mika";
+  // lib.optionalAttrs (!isDarwin) {
+    homeDirectory = "/home/mika";
   };
 
   imports = [
@@ -69,9 +63,6 @@ in
   ++ lib.optionals (isWayland) [
     ../features.d/niri.nix
     ../features.d/noctalia.nix
-  ]
-  ++ lib.optionals (standalone) [
-    ../features.d/nix-settings.nix
   ];
 
 }

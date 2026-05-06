@@ -23,16 +23,18 @@
       name:
       { module }:
       let
-        system = builtins.currentSystem;
+        system = config.linuxSystem;
         pkgs = inputs.nixpkgs.legacyPackages.${system};
+        isDarwin = false;
       in
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ module ];
         extraSpecialArgs = {
           inherit system;
-          inputs = inputs;
-          isDarwin = system == config.darwinSystem;
+          inherit isDarwin;
+          isWayland = config.isWayland;
+          inherit inputs;
         };
       }
     );
