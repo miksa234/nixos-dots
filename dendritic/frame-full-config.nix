@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 {
   imports = [
     ./frame-hardware.nix
@@ -9,12 +9,10 @@
 
   system.stateVersion = "26.05";
 
-  # Sops secrets
   sops.defaultSopsFile = ../secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/mika/.config/sops/age/keys.txt";
 
-  # VM variant
   virtualisation.vmVariant = {
     virtualisation = {
       diskSize = 50 * 1028;
@@ -30,32 +28,16 @@
     };
   };
 
-  # Boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
 
-  # Hostname
   networking.hostName = "frame";
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
-  # Locale
-  time.timeZone = "Europe/London";
-  i18n.defaultLocale = "en_GB.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  # Users
   users.users.mika = {
     isNormalUser = true;
     description = "Mika";
@@ -66,17 +48,21 @@
     shell = pkgs.zsh;
   };
 
-  # Security
   security.sudo.wheelNeedsPassword = false;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
-  # Power management
   powerManagement.powertop.enable = true;
 
-  # Services
   services = {
-    automatic-timezoned.enable = false;  # Conflicts with explicit timeZone setting
-    avahi.enable = true;
+    automatic-timezoned.enable = false;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      publish = {
+        enable = true;
+        userServices = true;
+      };
+    };
     gvfs.enable = true;
     udisks2.enable = true;
     upower.enable = true;
@@ -107,19 +93,16 @@
     gnome.gnome-keyring.enable = true;
   };
 
-  # Libinput
   services.libinput = {
     enable = true;
     touchpad.naturalScrolling = false;
   };
 
-  # Desktop
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
 
-  # Packages
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
@@ -136,7 +119,8 @@
     git-crypt gnupg pass
     coreutils util-linux
     nix curl tree
-    stdenv dbus-broker pciutils pstree wireguard-tools
+    stdenv
+    dbus-broker pciutils pstree wireguard-tools
     gnome.gvfs ntfs3g
     upower lm_sensors acpilight
     ripgrep fd bat
@@ -145,7 +129,6 @@
     git
   ];
 
-  # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.terminess-ttf
     noto-fonts
@@ -159,7 +142,6 @@
   ];
   fonts.fontconfig.useEmbeddedBitmaps = true;
 
-  # Nix settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.max-jobs = lib.mkDefault 4;
 }

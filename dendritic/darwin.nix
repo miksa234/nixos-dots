@@ -1,4 +1,9 @@
-{ lib, config, inputs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 {
   options.configurations.darwin = lib.mkOption {
     type = lib.types.lazyAttrsOf (
@@ -9,13 +14,15 @@
         };
       }
     );
-    default = {};
+    default = { };
     description = "nix-darwin configurations to generate";
   };
 
   config.flake = {
     darwinConfigurations = lib.flip lib.mapAttrs config.configurations.darwin (
-      name: { module }: inputs.nix-darwin.lib.darwinSystem {
+      name:
+      { module }:
+      inputs.nix-darwin.lib.darwinSystem {
         system = config.darwinSystem;
         modules = [ module ];
       }

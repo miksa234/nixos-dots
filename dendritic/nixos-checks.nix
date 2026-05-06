@@ -1,11 +1,16 @@
 {
-  lib,
   config,
   inputs,
   ...
 }:
 {
-  perSystem = { pkgs, lib, system, ... }:
+  perSystem =
+    {
+      pkgs,
+      lib,
+      system,
+      ...
+    }:
     let
       isLinux = system == "x86_64-linux";
       checksMap = lib.flip lib.mapAttrsToList config.configurations.nixos (
@@ -30,10 +35,7 @@
       );
     in
     {
-      checks = 
-        if isLinux && config.flake.nixosConfigurations != { } then
-          lib.listToAttrs checksMap
-        else
-          { };
+      checks =
+        if isLinux && config.flake.nixosConfigurations != { } then lib.listToAttrs checksMap else { };
     };
 }

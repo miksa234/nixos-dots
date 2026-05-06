@@ -1,4 +1,9 @@
-{ lib, config, inputs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 {
   options.configurations.homeManager = lib.mkOption {
     type = lib.types.lazyAttrsOf (
@@ -9,13 +14,14 @@
         };
       }
     );
-    default = {};
+    default = { };
     description = "Home-manager configurations to generate";
   };
 
   config.flake = {
     homeConfigurations = lib.flip lib.mapAttrs config.configurations.homeManager (
-      name: { module }:
+      name:
+      { module }:
       let
         system = builtins.currentSystem;
         pkgs = inputs.nixpkgs.legacyPackages.${system};

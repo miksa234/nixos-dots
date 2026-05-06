@@ -5,14 +5,13 @@
   ...
 }:
 {
-  # nix-darwin setup
   nixpkgs.hostPlatform = systemName;
   system.stateVersion = 6;
   networking.hostName = hostName;
 
   imports = [
-    ../../users/root.nix
-    ../../modules/nix-settings.nix
+    ./users.d/root.nix
+    ./features.d/nix-settings.nix
   ];
 
   environment.variables = {
