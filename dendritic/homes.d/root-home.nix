@@ -3,9 +3,6 @@
   isDarwin ? false,
   ...
 }:
-let
-  inherit (import ../modules/config-dots.nix) config-dots config-nvim;
-in
 {
   environment.pathsToLink =
     if (!isDarwin) then
@@ -27,35 +24,9 @@ in
         home = {
           username = "root";
           stateVersion = if isDarwin then "25.05" else "25.11";
-          file =
-            let
-              mkDotfileLink = path: {
-                source = config.lib.file.mkOutOfStoreSymlink "${config-dots}/${path}";
-                recursive = true;
-                force = true;
-              };
-              mkNvimfileLink = path: {
-                source = config.lib.file.mkOutOfStoreSymlink "${config-nvim}";
-                recursive = true;
-                force = true;
-              };
-            in
-            {
-              # zsh no plugins
-              ".zshenv" = mkDotfileLink ".zshenv";
-              ".config/zsh/.zshrc" = mkDotfileLink ".config/zsh/.zshrc";
-              ".config/shell/bindings" = mkDotfileLink ".config/shell/bindings";
-              ".config/shell/profile" = mkDotfileLink ".config/shell/profile";
-              ".config/shell/aliases" = mkDotfileLink ".config/shell/aliases";
-              ".config/git" = mkDotfileLink ".config/git";
-
-              ".local/bin/.keep".text = "";
-
-              # nvim no plugins
-              ".config/nvim/init.lua" = mkNvimfileLink ".config/nvim/init.lua";
-              ".config/nvim/after" = mkNvimfileLink ".config/nvim/after";
-              ".config/nvim/lua/config" = mkNvimfileLink ".config/nvim/lua/config";
-            };
+          file = {
+            ".local/bin/.keep".text = "";
+          };
         }
         // lib.optionalAttrs (!isDarwin) {
           homeDirectory = "/root";

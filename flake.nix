@@ -47,6 +47,7 @@
         ./dendritic/systems.nix
         ./dendritic/meta.nix
         ./dendritic/nixos.nix
+        ./dendritic/nixos-checks.nix
         ./dendritic/darwin.nix
         ./dendritic/home-manager.nix
         ./dendritic/frame-config.nix
