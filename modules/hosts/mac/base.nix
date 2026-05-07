@@ -5,6 +5,8 @@
       hostName,
       inputs,
       systemName,
+      isWayland,
+      dendritic,
       ...
     }:
     {
@@ -30,5 +32,17 @@
       };
 
       nixpkgs.config.allowUnfree = true;
+
+      home-manager.extraSpecialArgs = {
+        inherit
+          dendritic
+          hostName
+          inputs
+          isWayland
+          systemName
+          ;
+        isDarwin = true;
+        isSystemManagedHome = true;
+      };
     };
 }

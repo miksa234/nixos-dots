@@ -4,6 +4,9 @@
     {
       hostName,
       inputs,
+      systemName,
+      isWayland,
+      dendritic,
       lib,
       ...
     }:
@@ -64,5 +67,17 @@
         "flakes"
       ];
       nix.settings.max-jobs = lib.mkDefault 4;
+
+      home-manager.extraSpecialArgs = {
+        inherit
+          dendritic
+          hostName
+          inputs
+          isWayland
+          systemName
+          ;
+        isDarwin = false;
+        isSystemManagedHome = true;
+      };
     };
 }

@@ -5,16 +5,17 @@ let
       config,
       pkgs,
       lib,
+      osConfig ? null,
       ...
     }:
     let
       isHomeManager = config ? home;
+      isSystemManagedHome = isHomeManager && osConfig != null;
     in
     {
       nix =
         {
           enable = true;
-          package = pkgs.nix;
           settings = {
             use-xdg-base-directories = true;
             experimental-features = [
@@ -26,6 +27,9 @@ let
               "root"
             ];
           };
+        }
+        // lib.optionalAttrs (!isSystemManagedHome) {
+          package = pkgs.nix;
         }
         // lib.optionalAttrs (!isHomeManager) {
           channel.enable = false;
