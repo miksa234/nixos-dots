@@ -7,7 +7,7 @@
 }:
 let
   packageSets = import ../modules/packages.nix { inherit pkgs; };
-  inherit (import ../modules/config-dots.nix) config-dots config-nvim;
+  inherit (import ../modules/dotfiles.nix) config-dots config-nvim;
 in
 {
   home = {

@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (import ../modules/config-dots.nix) config-dots config-nvim;
+  inherit (import ../modules/dotfiles.nix) config-dots config-nvim;
 in
 {
   environment.pathsToLink =
